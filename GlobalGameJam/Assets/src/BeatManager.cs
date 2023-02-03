@@ -10,6 +10,17 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField] private float beatPeriod;
     private float currentTimer = 0f;
+
+    public void Start()
+    {
+        Beat.AddListener(PrintBeat);
+    }
+
+    public void PrintBeat()
+    {
+        Debug.Log("Beat");
+    }
+
     public void Update()
     {
         currentTimer += Time.deltaTime;
