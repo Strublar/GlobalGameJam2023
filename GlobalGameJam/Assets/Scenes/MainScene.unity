@@ -779,7 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914bb5af16b6eb04bbe5182c262bd754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatPeriod: 1
+  initialBeatPeriod: 1
+  beatMultiplierPerBeat: 0.99
 --- !u!1001 &793960421
 PrefabInstance:
   m_ObjectHideFlags: 0
