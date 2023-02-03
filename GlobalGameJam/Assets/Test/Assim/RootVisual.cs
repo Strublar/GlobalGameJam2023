@@ -25,14 +25,17 @@ public class RootVisual : MonoBehaviour
     }
 
 
+    [ContextMenu("Reset Rotation")]
     private void ResetRotation()
     {
         for(int i =0; i < bonesTransform.Count;i ++)
         {          
-            bonesTransform[i].eulerAngles.Set(new Vector3(0,0,0));
+            bonesTransform[i].localEulerAngles = new Vector3(0,0,0);
         }
     }
-        
+
+    [ContextMenu("Set Random Rotation")]
+
     private void SetRandomRotation()
     {
         lastBoneRotation = 0;
@@ -40,8 +43,8 @@ public class RootVisual : MonoBehaviour
         for(int i =0; i < bonesTransform.Count;i ++)
         {          
             lastBoneRotation += Random.Range(-20,20);
-            Vector3 m_euler = bonesTransform[i].eulerAngles;
-            bonesTransform[i].eulerAngles.Set(m_euler + new Vector3(0,0,lastBoneRotation));
+            Vector3 m_euler = bonesTransform[i].localEulerAngles;
+            bonesTransform[i].localEulerAngles = m_euler + new Vector3(0, 0, lastBoneRotation);
         }
     }
 }
