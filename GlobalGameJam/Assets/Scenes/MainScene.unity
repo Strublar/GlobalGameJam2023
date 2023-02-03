@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2994d96ccc1e947916e256a642c1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashForce: 0
-  dashDuration: 1
+  dashForce: 10
+  dashDuration: 0.1
   target: {fileID: 920880654}
 --- !u!1 &261527337
 GameObject:
@@ -483,7 +483,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatPeriod: 3
-  rootManager: {fileID: 860810471}
 --- !u!1 &860810469
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,14 +528,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootPrefab: {fileID: 7939883268132978206, guid: 7347a776457111b46916f43957c42ecf, type: 3}
-  spawnPeriod: 0
+  spawnPeriod: 1
   minRootRange: 0
   maxRootRange: 0
-  spawnPoints:
-  - {fileID: 1423879295}
-  - {fileID: 1275541661}
-  - {fileID: 1414407276}
-  - {fileID: 297991008}
+  spawnPointContainer: {fileID: 1086684201}
 --- !u!1 &920880653
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +802,6 @@ GameObject:
   - component: {fileID: 1415448888}
   - component: {fileID: 1415448887}
   - component: {fileID: 1415448886}
-  - component: {fileID: 1415448889}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
