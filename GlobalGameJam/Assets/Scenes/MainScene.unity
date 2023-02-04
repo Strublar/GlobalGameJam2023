@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseTarget: {fileID: 920880654}
-  playerRenderer: {fileID: 0}
+  playerRenderer: {fileID: 316038886}
 --- !u!1818360609 &595754889
 RotationConstraint:
   m_ObjectHideFlags: 0
