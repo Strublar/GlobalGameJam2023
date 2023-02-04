@@ -31,38 +31,8 @@ public class Root : MonoBehaviour
         this.spawnPoint = spawnPoint;
         this.manager = manager;
         this.isSeed = isSeed;
-        
-        // transform.LookAt(target.transform);
-        StartCoroutine(Expand());
     }
-
-    IEnumerator Expand()
-    {
-        yield return null;
-        // Vector3 startVector = new Vector3(1, 1, 0);
-        // var currentDuration = 0f;
-        //
-        // while (state == RootState.Expanding)
-        // {
-        //     currentDuration += Time.deltaTime;
-        //     expandingRoot.transform.localScale =
-        //         Vector3.Lerp(startVector, 
-        //             startVector+Vector3.forward * Vector3.Distance(spawnPoint, target.transform.position),
-        //             currentDuration / manager.expandDuration);
-        //     if (currentDuration >= manager.expandDuration)
-        //         state = RootState.Expanded;
-        //     yield return null;
-        // }
-        // if (state == RootState.Expanded)
-        // {
-        //     manager.SpawnRootFromPosition(target,false);
-        //     foreach (Transform current in expandingRoot.transform)
-        //     {
-        //         current.gameObject.tag = "Wall";
-        //         rootModel.GetComponent<MeshRenderer>().material.color = Color.magenta;
-        //     }
-        // }
-    }
+    
 
     public void Cut()
     {
