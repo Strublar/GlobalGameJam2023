@@ -32,6 +32,19 @@ public class GameManager : MonoBehaviour
         scoreTxt.text = _score.ToString();
     }
 
+    public void ToggleMainMenu()
+    {
+        mainMenuCanvas.enabled = !mainMenuCanvas.enabled;
+        if (Time.deltaTime == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+    }
+
     public void GameOn()
     {
         Time.timeScale = 1;
