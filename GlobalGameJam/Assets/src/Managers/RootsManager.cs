@@ -11,8 +11,8 @@ namespace src
 
         [Header("Root behaviour")] public float expandDuration;
 
-        [Header("Root generation management")] [SerializeField]
-        private GameObject rootPrefab;
+        [Header("Root generation management")] 
+        [SerializeField] private GameObject rootPrefab;
 
         [SerializeField] private int baseSpawnPeriod;
         //[SerializeField] private  spawnPeriodMultiplierPerSpawn;
