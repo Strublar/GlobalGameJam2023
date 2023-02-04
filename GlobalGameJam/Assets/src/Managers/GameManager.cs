@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float shakeDuration;
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private Canvas mainMenuCanvas;
+    [SerializeField] private Canvas deathCanvas;
     [SerializeField] private TextMeshProUGUI scoreTxt;
     private int _score;
     
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         mainMenuCanvas.enabled = false;
+        deathCanvas.enabled = false;
     }
 
 
