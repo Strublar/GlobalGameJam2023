@@ -14,18 +14,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float shakeDuration;
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private Canvas mainMenuCanvas;
-    
+    [SerializeField] private TextMeshProUGUI scoreTxt;
+    private int _score;
     
     
     
     private void Awake()
     {
         instance = this;
-        Time.timeScale = 0; // Stop at main menu
     }
 
-    [SerializeField] private TextMeshProUGUI scoreTxt;
-    private int _score;
+
     
     void Start()
     {
