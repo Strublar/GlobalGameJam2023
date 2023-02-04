@@ -20,18 +20,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreTxt;
     private int _score;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         scoreTxt.text = _score.ToString();
-
     }
 
     public void IncrementScore(int scoreAmount)
     {
         _score += scoreAmount;
-        scoreTxt.color = GetColorAccordingToScoreBoost(scoreAmount);
+        if (scoreAmount != 0)
+        {
+            scoreTxt.color = GetColorAccordingToScoreBoost(scoreAmount); // The color could be defined by consecutive root cuts            
+        }
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
         scoreTxt.text = _score.ToString();
         
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
         
         var shakeScore = shakeCoeff * scoreAmount;
         var shakeVector = new Vector3(shakeScore, shakeScore, shakeScore);
-        Camera.main.DOShakePosition(1, new Vector3(0.5f,0.5f,0.5f), 20, 45f, false, ShakeRandomnessMode.Harmonic);
+        Camera.main.DOShakePosition(1, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
     }
 
     // Update is called once per frame
