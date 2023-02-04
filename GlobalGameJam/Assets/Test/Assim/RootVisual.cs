@@ -21,11 +21,16 @@ public class RootVisual : MonoBehaviour
     private bool isGrowing;
     private bool isShrinking;
 
+    private float fakePhysicsProgression;
+
     public float wiggleAmount = 10;
 
     public bool solid = false;
     private Vector3 endPoint;
     public int Longevity = 3;
+
+    public GameObject FleurPrefab;
+    private GameObject linkedFlower;
 
     private void Awake()
     {
@@ -41,6 +46,7 @@ public class RootVisual : MonoBehaviour
     {
         SetRandomRotation();
         GenerateCuttedRoot();
+        SpawnFlower();
     }
 
     // Update is called once per frame
@@ -106,6 +112,15 @@ public class RootVisual : MonoBehaviour
         m_rootCutObject.SetActive(false);
     }
 
+    private void SpawnFlower() 
+    {
+        linkedFlower = Instantiate(FleurPrefab, endPoint, Quaternion.identity);
+    }
+    private void KillFlower() 
+    {
+        Destroy(linkedFlower);
+    }
+
     public void CutRoot(float position) 
     {
         if (solid || isShrinking) 
@@ -127,7 +142,7 @@ public class RootVisual : MonoBehaviour
             {
                 HingeJoint m_joint = m_cuttedRootBones[i].gameObject.AddComponent<HingeJoint>();
                 m_joint.connectedBody = m_cuttedRootBones[i - 1].GetComponent<Rigidbody>();
-                //m_joint.axis = new Vector3(1, 0, 1);
+                m_joint.axis = new Vector3(1, 0, 0);
             }
 
 
@@ -137,6 +152,7 @@ public class RootVisual : MonoBehaviour
         m_rootBaseMesh.material.SetColor("_Color", Color.grey);
         isShrinking = true;
         m_rootProgression = position;
+        KillFlower();
     }
     
 
@@ -153,6 +169,11 @@ public class RootVisual : MonoBehaviour
             {
                 Solidify();
 
+            }
+            if (m_rootProgression < 2)
+            {
+                m_rootProgression += Time.deltaTime / timeToGrow;
+                m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, m_rootProgression, m_MaskParams.z, m_MaskParams.w));
             }
         }
     }

@@ -584,3 +584,4 @@ MonoBehaviour:
   wiggleAmount: 6
   solid: 0
   Longevity: 2
+  FleurPrefab: {fileID: 5473320706453448477, guid: 59a73cdffd91a894f92f523609b785cb, type: 3}

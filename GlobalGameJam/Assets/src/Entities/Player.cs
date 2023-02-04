@@ -131,9 +131,15 @@ public class Player : MonoBehaviour
             RaycastHit hit = hits[i];
             if (hit.transform.CompareTag("Root")) 
             {
+                RootVisual hittedRoot = hit.transform.GetComponentInParent<RootVisual>();
+                float hittedLocalPoint = hittedRoot.transform.InverseTransformPoint(hit.point).y / 2;
+                if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
+                {
+                    hittedRoot.CutRoot(hittedLocalPoint);
 
-                hit.transform.GetComponentInParent<RootVisual>().CutRoot(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y / 2);
-                Debug.LogWarning(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y/2);
+                }
+
+                // Debug.LogWarning(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y/2);
 
             }
         }
@@ -143,7 +149,8 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.CompareTag("Wall"))
             {
-                GameManager.instance.Death();
+                Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);
+                Time.timeScale = 0;
             }
         }
     }
