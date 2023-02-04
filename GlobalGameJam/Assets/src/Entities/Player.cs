@@ -52,14 +52,10 @@ public class Player : MonoBehaviour
         }
 
         RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude);
+        var rootCuts = Array.FindAll(hits, hit => hit.transform.CompareTag("Root"));
+        GameManager.instance.IncrementScore(rootCuts.Length);
         foreach (var hit in hits)
         {
-            if(hit.transform.CompareTag("Root"))
-            {
-                Debug.Log("Root détecté" + hit.transform.name);
-                hit.transform.GetComponentInParent<Root>().Cut();
-            }
-
             if (hit.transform.CompareTag("Wall"))
             {
                 Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);

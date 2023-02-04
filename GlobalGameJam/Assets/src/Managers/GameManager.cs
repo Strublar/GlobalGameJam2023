@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    
     private void Awake()
     {
         instance = this;
@@ -21,12 +22,26 @@ public class GameManager : MonoBehaviour
         scoreTxt.text = _score.ToString();
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int scoreAmount)
     {
-        _score += 1;
+        _score += scoreAmount;
+        scoreTxt.color = GetColorAccordingToScoreBoost(scoreAmount);
         scoreTxt.text = _score.ToString();
         Debug.Log("current score :" + _score.ToString());
     }
+    private static Color GetColorAccordingToScoreBoost(int scoreAmount)
+    {
+        if (scoreAmount <= 1)
+        {
+            return Color.black;
+        }
+
+        if (scoreAmount <= 3)
+        {
+            return Color.yellow;
+        }
+        return Color.red;
+    } 
 
     // Update is called once per frame
     void Update()

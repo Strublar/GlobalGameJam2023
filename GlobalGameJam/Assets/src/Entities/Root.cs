@@ -70,7 +70,6 @@ public class Root : MonoBehaviour
     {
         state = RootState.Cut;
         Destroy(expandingRoot);
-        GameManager.instance.IncrementScore();
         if(isSeed)
             Destroy(gameObject);
         
