@@ -169,7 +169,10 @@ public class RootVisual : MonoBehaviour
     private void Solidify() 
     {
         solid = true;
-        gameObject.tag = "Wall";
+        for (int i = 0; i < bonesTransform.Count; i++)
+        {
+            bonesTransform[i].tag = "Wall";
+        }
         m_rootBaseMesh.material.SetColor("_Color", Color.black);
         Longevity--;
         if (Longevity > 0) 

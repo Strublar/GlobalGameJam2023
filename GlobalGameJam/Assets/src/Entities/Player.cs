@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashDuration;
     [SerializeField] private Transform target;
 
+    public LayerMask dashPhysicsLayerMask;
+
+
 
     public void Awake()
     {
@@ -102,14 +105,28 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude);
+        RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude, dashPhysicsLayerMask.value);
+        /*
         var rootCuts = Array.FindAll(hits, hit => hit.transform.CompareTag("Root"));
         foreach (var rootCut in rootCuts)
         {
-            rootCut.transform.GetComponentInParent<Root>().Cut();
+            rootCut.transform.GetComponentInParent<RootVisual>().CutRoot(UnityEngine.Random.Range(0.1f,0.8f));
+            hits
+            //FIND OUT WHERE WE HIT THE ROOT
+        }
+        */
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit hit = hits[i];
+            if (hit.transform.CompareTag("Root")) 
+            {
+                hit.transform.GetComponentInParent<RootVisual>().CutRoot(UnityEngine.Random.Range(0.1f, 0.8f));
+                Debug.Log(hit.transform.InverseTransformPoint(hit.point).y);
+
+            }
         }
 
-        GameManager.instance.IncrementScore(rootCuts.Length);
+        GameManager.instance.IncrementScore(hits.Length);
         foreach (var hit in hits)
         {
             if (hit.transform.CompareTag("Wall"))
