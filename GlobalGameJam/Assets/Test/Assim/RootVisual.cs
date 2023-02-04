@@ -39,6 +39,7 @@ public class RootVisual : MonoBehaviour
         m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, 0, m_MaskParams.z, m_MaskParams.w));
         timeToGrow += Random.Range(-.3f, .3f);
         isGrowing = true;
+        Physics.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
     }
 
 
@@ -131,25 +132,37 @@ public class RootVisual : MonoBehaviour
         isGrowing = false;
         float currentProgression = m_rootBaseMesh.material.GetVector("_RootMask").y;
 
+        //disable base colliders
+        for (int i = 0; i < bonesTransform.Count; i++)
+        {
+            if (bonesTransform[i].GetComponent<Collider>()) 
+            {
+                bonesTransform[i].GetComponent<Collider>().enabled = false;
+            }
+        }
+
         m_rootCutObject.SetActive(true);
         m_rootCutMesh.material.SetVector("_RootMask", new Vector4(position, currentProgression, m_MaskParams.z, m_MaskParams.w));
         Transform[] m_cuttedRootBones = m_rootCutObject.transform.Find("Armature").transform.GetComponentsInChildren<Transform>();
-        for (int i = 0; i < m_cuttedRootBones.Length; i++)
+        for (int i = 1; i < m_cuttedRootBones.Length; i++)
         {
             Rigidbody m_rigidbody = m_cuttedRootBones[i].gameObject.AddComponent<Rigidbody>();
             m_rigidbody.mass = 50;
-            m_cuttedRootBones[i].gameObject.AddComponent<SphereCollider>().radius = 0.2f;
-            if(i > 0) 
+            m_rigidbody.velocity = Vector3.zero;
+           // m_rigidbody.constraints = RigidbodyConstraints.Freeze;
+            //m_cuttedRootBones[i].gameObject.AddComponent<SphereCollider>().radius = 0.2f;
+            if(i > 1) 
             {
                 HingeJoint m_joint = m_cuttedRootBones[i].gameObject.AddComponent<HingeJoint>();
                 m_joint.connectedBody = m_cuttedRootBones[i - 1].GetComponent<Rigidbody>();
-                m_joint.axis = new Vector3(1, 0, 0);
+                m_joint.axis = new Vector3(0, 0, 1);
             }
+
 
 
         }
 
-        m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, position, m_MaskParams.z, m_MaskParams.w));
+        m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, (position < currentProgression) ? position : currentProgression, m_MaskParams.z, m_MaskParams.w));
         m_rootBaseMesh.material.SetColor("_Color", Color.grey);
         isShrinking = true;
         m_rootProgression = position;
