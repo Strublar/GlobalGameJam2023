@@ -8,6 +8,11 @@ public class ButtonFunctions : MonoBehaviour
     {
         GameManager.instance.GameOn();
     }
+    
+    public void ResumeGame()
+    {
+        GameManager.instance.ToggleMainMenu();
+    }
 
     public void HighScores()
     {
