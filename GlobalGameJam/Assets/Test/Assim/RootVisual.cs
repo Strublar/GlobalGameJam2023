@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using src;
 
 
 public class RootVisual : MonoBehaviour
@@ -24,7 +25,7 @@ public class RootVisual : MonoBehaviour
 
     public bool solid = false;
     private Vector3 endPoint;
-    public float longevity = 3;
+    public int Longevity = 3;
 
     private void Awake()
     {
@@ -148,7 +149,11 @@ public class RootVisual : MonoBehaviour
         }
         else 
         {
-            Solidify();
+            if (!solid) 
+            {
+                Solidify();
+
+            }
         }
     }
 
@@ -166,10 +171,10 @@ public class RootVisual : MonoBehaviour
         solid = true;
         gameObject.tag = "Wall";
         m_rootBaseMesh.material.SetColor("_Color", Color.black);
-
-        if (longevity > 0) 
-        {
-            //RootsManager.instance.SpawnRootFromPosition(endPoint, true, longevity);
+        Longevity--;
+        if (Longevity > 0) 
+        {      
+            RootsManager.instance.SpawnRootFromPosition(endPoint, Longevity, transform.eulerAngles.y);
             //lower child longevity
         }
 

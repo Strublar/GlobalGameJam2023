@@ -37,18 +37,31 @@ namespace src
 
         public void SpawnSeed()
         {
+            Debug.Log("SPAWN");
             var minBound = ground.bounds.min;
             var maxBound = ground.bounds.max;
-            SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)), true);
+            SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)),3);
         }
 
-        public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, bool isSeed)
+        public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, int longevity = 3, float parentRootAngle = 0)
         {
-            
+            float rootYRotation;
+
+            if (longevity < 3) 
+            {
+                rootYRotation = parentRootAngle + Random.Range(-60, 60);
+            }
+            else 
+            {
+                rootYRotation = Random.Range(0, 360);
+
+            }
+
             var instantiatedRoot = Instantiate(rootPrefab, selectedSpawnPoint,
-                Quaternion.identity, rootContainer.transform);
-            instantiatedRoot.GetComponent<Root>()
-                .Init(selectedSpawnPoint, this, isSeed);
+                Quaternion.Euler(90, rootYRotation, 0), rootContainer.transform);
+           
+
+            rootPrefab.GetComponent<RootVisual>().Longevity = longevity;
         }
 
         private void Start()
