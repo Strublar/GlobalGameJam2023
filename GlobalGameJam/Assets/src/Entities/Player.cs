@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
@@ -21,10 +24,14 @@ public class Player : MonoBehaviour
     public LayerMask dashPhysicsLayerMask;
 
 
+    [SerializeField] private float playerPunchScalePower;
+    [SerializeField] private float playerPunchScaleDuration;
+    
 
     public void Awake()
     {
         BeatManager.Beat.AddListener(Dash);
+        BeatManager.OffBeat.AddListener(OnOffBeat);
     }
 
     #region Essais Landry
@@ -72,6 +79,10 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    private void OnOffBeat()
+    {
+        transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
+    }
 
     private void Dash()
     {

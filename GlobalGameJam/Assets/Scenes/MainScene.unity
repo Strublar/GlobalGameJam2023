@@ -398,6 +398,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDuration: 0.1
   target: {fileID: 920880654}
+  playerPunchScalePower: 0.2
+  playerPunchScaleDuration: 0.1
   dashPhysicsLayerMask:
     serializedVersion: 2
     m_Bits: 1024
