@@ -18,6 +18,13 @@ public class RootVisual : MonoBehaviour
     public float m_rootProgression;
     private Vector4 m_MaskParams;
     private bool isGrowing;
+    private bool isShrinking;
+
+    public float wiggleAmount = 10;
+
+    public bool solid = false;
+    private Vector3 endPoint;
+    public float longevity = 3;
 
     private void Awake()
     {
@@ -51,7 +58,13 @@ public class RootVisual : MonoBehaviour
         if (isGrowing) 
         {
             Grow();
-
+        }
+        else 
+        {
+            if (isShrinking && !solid) 
+            {
+                Shrink();
+            }
         }
     }
 
@@ -74,9 +87,13 @@ public class RootVisual : MonoBehaviour
 
         for(int i =0; i < bonesTransform.Count;i ++)
         {          
-            lastBoneRotation += Random.Range(-20,20);
+            lastBoneRotation += Random.Range(-wiggleAmount, wiggleAmount);
             Vector3 m_euler = bonesTransform[i].localEulerAngles;
             bonesTransform[i].localEulerAngles = m_euler + new Vector3(0, 0, lastBoneRotation);
+            if(i == bonesTransform.Count - 1) 
+            {
+                endPoint = bonesTransform[i].transform.position;
+            }
         }
     }
 
@@ -90,6 +107,11 @@ public class RootVisual : MonoBehaviour
 
     public void CutRoot(float position) 
     {
+        if (solid) 
+        {
+            Debug.Log("Tried to Cut but root is solid");
+            return;
+        }
         isGrowing = false;
         float currentProgression = m_rootBaseMesh.material.GetVector("_RootMask").y;
 
@@ -112,6 +134,8 @@ public class RootVisual : MonoBehaviour
 
         m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, position, m_MaskParams.z, m_MaskParams.w));
         m_rootBaseMesh.material.SetColor("_Color", Color.grey);
+        isShrinking = true;
+        m_rootProgression = position;
     }
     
 
@@ -122,5 +146,32 @@ public class RootVisual : MonoBehaviour
             m_rootProgression += Time.deltaTime / timeToGrow;
             m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, m_rootProgression, m_MaskParams.z, m_MaskParams.w));
         }
+        else 
+        {
+            Solidify();
+        }
+    }
+
+    private void Shrink() 
+    {
+        if (m_rootProgression > 0)
+        {
+            m_rootProgression -= Time.deltaTime * 0.2f;
+            m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, m_rootProgression, m_MaskParams.z, m_MaskParams.w));
+        }
+    }
+
+    private void Solidify() 
+    {
+        solid = true;
+        gameObject.tag = "Wall";
+        m_rootBaseMesh.material.SetColor("_Color", Color.black);
+
+        if (longevity > 0) 
+        {
+            //RootsManager.instance.SpawnRootFromPosition(endPoint, true, longevity);
+            //lower child longevity
+        }
+
     }
 }
