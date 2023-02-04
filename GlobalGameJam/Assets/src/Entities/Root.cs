@@ -51,4 +51,10 @@ public class Root : MonoBehaviour
         if(state == RootState.Expanded)
             manager.SpawnRootAtTarget(target);
     }
+
+    public void Cut()
+    {
+        state = RootState.Cut;
+        Destroy(expandingRoot);
+    }
 }

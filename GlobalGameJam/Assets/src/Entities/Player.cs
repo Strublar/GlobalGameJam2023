@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
     [SerializeField] private float minDashForce;
-    [SerializeField] private float  maxDashForce;
+    [SerializeField] private float maxDashForce;
 
     [SerializeField] private float minDashThreshold;
     [SerializeField] private float maxDashThreshold;
 
     [SerializeField] private float dashDuration;
     [SerializeField] private Transform target;
-    
-    
+
+
     public void Awake()
     {
         BeatManager.Beat.AddListener(Dash);
@@ -34,21 +33,36 @@ public class Player : MonoBehaviour
             dashForce = maxDashForce;
         else
         {
-            dashForce = minDashForce + (directionMagnitude - minDashThreshold) * (maxDashForce-minDashForce) / (maxDashThreshold-minDashThreshold);
+            dashForce = minDashForce + (directionMagnitude - minDashThreshold) * (maxDashForce - minDashForce) /
+                (maxDashThreshold - minDashThreshold);
         }
-        
+
         var forceVector = (target.position - position).normalized * dashForce;
-        StartCoroutine(DashCoroutine(position,position+forceVector));
+        StartCoroutine(DashCoroutine(position, forceVector));
     }
 
-    IEnumerator DashCoroutine(Vector3 from, Vector3 to)
+    IEnumerator DashCoroutine(Vector3 from, Vector3 direction)
     {
         var currentDuration = 0f;
-        while(currentDuration < dashDuration)
+        while (currentDuration < dashDuration)
         {
             currentDuration += Time.deltaTime;
-            transform.position = Vector3.Lerp(from, to, currentDuration / dashDuration);
+            transform.position = Vector3.Lerp(from, from + direction, currentDuration / dashDuration);
             yield return null;
         }
+
+        RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude);
+        foreach (var hit in hits)
+        {
+            if(hit.transform.CompareTag("Root"))
+            {
+                Debug.Log("Root détecté" + hit.transform.name);
+                hit.transform.GetComponentInParent<Root>().Cut();
+            }
+        }
     }
+    
+    
+
+
 }

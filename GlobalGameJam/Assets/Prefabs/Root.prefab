@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3859998115711332891}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3844561370217086432}
   m_Layer: 0
   m_Name: ExpandingRoot
-  m_TagString: Untagged
+  m_TagString: Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8135903977967059023}
   m_Layer: 0
   m_Name: Root
-  m_TagString: Untagged
+  m_TagString: Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,4 +243,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandingRoot: {fileID: 6288975422327273771}
-  target: {fileID: 0}
