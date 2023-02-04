@@ -38,11 +38,12 @@ public class Player : MonoBehaviour
         }
         
         var forceVector = (target.position - position).normalized * dashForce;
-        StartCoroutine(DashCoroutine(position,position+forceVector,0f));
+        StartCoroutine(DashCoroutine(position,position+forceVector));
     }
 
-    IEnumerator DashCoroutine(Vector3 from, Vector3 to, float currentDuration)
+    IEnumerator DashCoroutine(Vector3 from, Vector3 to)
     {
+        var currentDuration = 0f;
         while(currentDuration < dashDuration)
         {
             currentDuration += Time.deltaTime;

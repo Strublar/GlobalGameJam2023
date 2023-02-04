@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3878998184623572475}
   - component: {fileID: 1651913032447187216}
   m_Layer: 0
-  m_Name: SpawnPointPrefab
-  m_TagString: Untagged
+  m_Name: SpawnPoint
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

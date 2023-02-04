@@ -370,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210968156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5529056, y: -0.42895842, z: 0.41588497}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -882,10 +882,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b39367fd50e0142a006bf6799cff99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expandDuration: 3
   rootPrefab: {fileID: 7939883268132978206, guid: 7347a776457111b46916f43957c42ecf, type: 3}
-  spawnPeriod: 1
+  baseSpawnPeriod: 5
+  spawnPeriodMultiplierPerSpawn: 1
   minRootRange: 0
-  maxRootRange: 0
+  maxRootRange: 100
   spawnPointContainer: {fileID: 1086684201}
   rootContainer: {fileID: 210968156}
 --- !u!1 &920880653

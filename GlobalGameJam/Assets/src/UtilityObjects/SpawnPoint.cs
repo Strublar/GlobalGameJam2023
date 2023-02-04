@@ -13,14 +13,17 @@ namespace src
 
             foreach (Collider collider in hitColliders)
             {
-                Debug.Log(collider.gameObject.name + " is within range.");
-                _eligibleNeighbours.Add(collider.gameObject.transform);
+                if(collider.CompareTag("SpawnPoint"))
+                {
+                    Debug.Log(collider.gameObject.name + " is within range.");
+                    _eligibleNeighbours.Add(collider.gameObject.transform);
+                }
             }
         }
 
-        public Transform getRandomNeighbour()
+        public SpawnPoint getRandomNeighbour()
         {
-            return _eligibleNeighbours[Random.Range(0, _eligibleNeighbours.Count)];
+            return _eligibleNeighbours[Random.Range(0, _eligibleNeighbours.Count)].GetComponent<SpawnPoint>();
         }
     }
 }

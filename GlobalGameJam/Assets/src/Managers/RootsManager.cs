@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace src
 {
     public class RootsManager : MonoBehaviour
     {
+        [Header("Root behaviour")] 
+        public float expandDuration;
+
+        [Header("Root generation management")]
         [SerializeField] private GameObject rootPrefab;
-        [SerializeField] private float spawnPeriod;
+        [SerializeField] private float baseSpawnPeriod;
+        [SerializeField] private float spawnPeriodMultiplierPerSpawn;
+        
         [SerializeField] private float minRootRange;
         [SerializeField] private float maxRootRange;
+        
+        [Header("Spawn point management")]
         [SerializeField] private GameObject spawnPointContainer;
         [SerializeField] private GameObject rootContainer;
 
+        private float currentSpawnPeriod;
         private float currentTimer = 0f;
         public static RootsManager _instance { get; private set; }
 
@@ -24,32 +34,33 @@ namespace src
             {
                 _instance = this;
             }
+
+            currentSpawnPeriod = baseSpawnPeriod;
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-
+        
         public void SpawnRoot()
         {
-            var availableSpawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
-            var selectedSpawnPoint = availableSpawnPoints[Random.Range(0, availableSpawnPoints.Length)];
-            var selectedTransform = selectedSpawnPoint.transform;
+            SpawnPoint[] availableSpawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
+            SpawnPoint selectedSpawnPoint = availableSpawnPoints[Random.Range(0, availableSpawnPoints.Length)];
+            SpawnRootAtTarget(selectedSpawnPoint);
+
+        }
+
+        public void SpawnRootAtTarget(SpawnPoint selectedSpawnPoint)
+        {
+            Transform selectedTransform = selectedSpawnPoint.transform;
             var instantiatedRoot = Instantiate(rootPrefab, selectedTransform.position,
                 selectedTransform.rotation, rootContainer.transform);
-            
-            instantiatedRoot.transform.LookAt(selectedSpawnPoint.getRandomNeighbour());
+            instantiatedRoot.GetComponent<Root>().Init(selectedSpawnPoint,selectedSpawnPoint.getRandomNeighbour(),this);
         }
 
         void Update()
         {
             currentTimer += Time.deltaTime;
-            if (currentTimer >= spawnPeriod)
+            if (currentTimer >= currentSpawnPeriod)
             {
                 currentTimer = 0f;
+                currentSpawnPeriod *= spawnPeriodMultiplierPerSpawn;
                 SpawnRoot();
             }
         }
