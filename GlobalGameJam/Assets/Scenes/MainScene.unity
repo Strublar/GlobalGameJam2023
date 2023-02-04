@@ -3719,6 +3719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialBeatPeriod: 1
+  offBeatOffset: 0.5
   beatMultiplierPerBeat: 1
 --- !u!1001 &762176159
 PrefabInstance:
@@ -4656,8 +4657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expandDuration: 5
   rootPrefab: {fileID: 7939883268132978206, guid: 7347a776457111b46916f43957c42ecf, type: 3}
-  baseSpawnPeriod: 5
-  spawnPeriodMultiplierPerSpawn: 0.95
+  baseSpawnPeriod: 1
+  spawnPeriodMultiplierPerSpawn: 1
   minRootRange: 20
   maxRootRange: 50
   spawnPointContainer: {fileID: 1086684201}

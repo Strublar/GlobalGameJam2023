@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -8,18 +9,25 @@ using UnityEngine.Serialization;
 public class BeatManager : MonoBehaviour
 {
     public static UnityEvent Beat = new UnityEvent();
+    public static UnityEvent OffBeat = new UnityEvent();
 
     [SerializeField] private float initialBeatPeriod;
+    [SerializeField] private float offBeatOffset;
+    
     [SerializeField] private float beatMultiplierPerBeat;
 
     private float currentBeatPeriod;
     private float currentTimer = 0f;
+    private float currentOffBeatTimer = 0f;
 
     public void Start()
     {
         currentBeatPeriod = initialBeatPeriod;
         Beat.AddListener(UpdateBeat);
+        OffBeat.AddListener(DisplayOffBeat);
+        currentTimer = offBeatOffset;
     }
+    
 
     public void UpdateBeat()
     {
@@ -27,6 +35,10 @@ public class BeatManager : MonoBehaviour
         currentBeatPeriod *= beatMultiplierPerBeat;
     }
 
+    public void DisplayOffBeat()
+    {
+        Debug.Log("OffBeat");
+    }
     public void Update()
     {
         currentTimer += Time.deltaTime;
@@ -34,6 +46,13 @@ public class BeatManager : MonoBehaviour
         {
             currentTimer = 0f;
             Beat.Invoke();
+        }
+
+        currentOffBeatTimer += Time.deltaTime;
+        if (currentOffBeatTimer >= currentBeatPeriod)
+        {
+            currentOffBeatTimer = 0f;
+            OffBeat.Invoke();
         }
     }
 }

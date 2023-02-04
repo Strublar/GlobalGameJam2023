@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace src
 {
     public class RootsManager : MonoBehaviour
     {
+        public static RootsManager instance;
+        
         [Header("Root behaviour")] 
         public float expandDuration;
 
@@ -20,22 +24,12 @@ namespace src
         [SerializeField] private GameObject spawnPointContainer;
         [SerializeField] private GameObject rootContainer;
 
-        private float currentSpawnPeriod;
-        private float currentTimer = 0f;
-        public static RootsManager _instance { get; private set; }
+        /*private float currentSpawnPeriod;
+        private float currentTimer = 0f;*/
 
         private void Awake()
         {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                _instance = this;
-            }
-
-            currentSpawnPeriod = baseSpawnPeriod;
+            instance = this;
         }
         
         public void SpawnSeed()
@@ -54,15 +48,21 @@ namespace src
             instantiatedRoot.GetComponent<Root>().Init(selectedSpawnPoint,selectedSpawnPoint.getRandomNeighbour(),this, isSeed);
         }
 
+        private void Start()
+        {
+            BeatManager.OffBeat.AddListener(SpawnSeed);
+        }
+
         void Update()
         {
-            currentTimer += Time.deltaTime;
+            /*currentTimer += Time.deltaTime;
             if (currentTimer >= currentSpawnPeriod)
             {
                 currentTimer = 0f;
                 currentSpawnPeriod *= spawnPeriodMultiplierPerSpawn;
                 SpawnSeed();
-            }
+            }*/
+            
         }
 
         public float GetMinRootRange()

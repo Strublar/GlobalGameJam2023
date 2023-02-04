@@ -5,25 +5,25 @@ namespace src
 {
     public class SpawnPoint : MonoBehaviour
     {
-        private List<Transform> _eligibleNeighbours; 
+        private List<Transform> eligibleNeighbours; 
         void Start()
         {
-            _eligibleNeighbours = new List<Transform>();
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, RootsManager._instance.GetMaxRootRange() - RootsManager._instance.GetMinRootRange());
+            eligibleNeighbours = new List<Transform>();
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, RootsManager.instance.GetMaxRootRange() - RootsManager.instance.GetMinRootRange());
 
             foreach (Collider collider in hitColliders)
             {
                 if(collider.CompareTag("SpawnPoint"))
                 {
-                    Debug.Log(collider.gameObject.name + " is within range.");
-                    _eligibleNeighbours.Add(collider.gameObject.transform);
+                    //Debug.Log(collider.gameObject.name + " is within range.");
+                    eligibleNeighbours.Add(collider.gameObject.transform);
                 }
             }
         }
 
         public SpawnPoint getRandomNeighbour()
         {
-            return _eligibleNeighbours[Random.Range(0, _eligibleNeighbours.Count)].GetComponent<SpawnPoint>();
+            return eligibleNeighbours[Random.Range(0, eligibleNeighbours.Count)].GetComponent<SpawnPoint>();
         }
     }
 }
