@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1179030961884627218
 GameObject:
@@ -90,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2055305626600282088
 GameObject:
@@ -228,7 +228,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3682224747625658279
 GameObject:
@@ -306,7 +306,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5360487845931766466
 GameObject:
@@ -352,7 +352,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6808646911282509769
 GameObject:
@@ -431,7 +431,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8555160525522193581
 GameObject:
@@ -476,7 +476,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8630866148316216163
 GameObject:
@@ -522,7 +522,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8694869438292329723
 GameObject:
@@ -550,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 8694869438292329723}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.26613235, y: 1.072, z: -4.26}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5, y: 9, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6140373208328416627}
@@ -579,8 +579,8 @@ MonoBehaviour:
   - {fileID: 5680776314938469978}
   - {fileID: 832048345880085818}
   m_rootBaseObject: {fileID: 6808646911282509769}
-  timeToGrow: 2
+  timeToGrow: 4
   m_rootProgression: 0
-  wiggleAmount: 4
+  wiggleAmount: 6
   solid: 0
-  Longevity: 3
+  Longevity: 2

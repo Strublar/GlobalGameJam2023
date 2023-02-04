@@ -108,7 +108,7 @@ public class RootVisual : MonoBehaviour
 
     public void CutRoot(float position) 
     {
-        if (solid) 
+        if (solid || isShrinking) 
         {
             Debug.Log("Tried to Cut but root is solid");
             return;

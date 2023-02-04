@@ -32,14 +32,14 @@ public class BeatManager : MonoBehaviour
 
     public void UpdateBeat()
     {
-        Debug.Log("Beat");
+        //Debug.Log("Beat");
         Camera.main.transform.DOPunchPosition(new Vector3(0.25f,0.25f,0.25f),0.2f,5,1f);
         currentBeatPeriod *= beatMultiplierPerBeat;
     }
 
     public void DisplayOffBeat()
     {
-        Debug.Log("OffBeat");
+       // Debug.Log("OffBeat");
     }
     public void Update()
     {

@@ -122,17 +122,18 @@ public class Player : MonoBehaviour
         foreach (var rootCut in rootCuts)
         {
             rootCut.transform.GetComponentInParent<RootVisual>().CutRoot(UnityEngine.Random.Range(0.1f,0.8f));
-            hits
+            //hits
             //FIND OUT WHERE WE HIT THE ROOT
-        }
-        */
+        }*/
+        
         for (int i = 0; i < hits.Length; i++)
         {
             RaycastHit hit = hits[i];
             if (hit.transform.CompareTag("Root")) 
             {
-                hit.transform.GetComponentInParent<RootVisual>().CutRoot(UnityEngine.Random.Range(0.1f, 0.8f));
-                Debug.Log(hit.transform.InverseTransformPoint(hit.point).y);
+
+                hit.transform.GetComponentInParent<RootVisual>().CutRoot(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y / 2);
+                Debug.LogWarning(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y/2);
 
             }
         }
@@ -143,7 +144,7 @@ public class Player : MonoBehaviour
             if (hit.transform.CompareTag("Wall"))
             {
                 Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
         }
     }
