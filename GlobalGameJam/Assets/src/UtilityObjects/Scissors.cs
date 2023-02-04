@@ -5,10 +5,12 @@ using UnityEngine;
 public class Scissors : MonoBehaviour
 {
     [SerializeField] private Transform mouseTarget;
+    [SerializeField] private SpriteRenderer playerRenderer;
 
-    // Update is called once per frame
     void Update()
     {
+        playerRenderer.flipX = (mouseTarget.transform.position - transform.position).x > 0;
         transform.LookAt(mouseTarget);
+        
     }
 }

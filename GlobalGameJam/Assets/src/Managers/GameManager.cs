@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField] private GameObject cameraObj;
     [SerializeField] private float shakeCoeff;
+    [SerializeField] private float shakeDuration;
     
     
     
@@ -60,11 +61,6 @@ public class GameManager : MonoBehaviour
         
         var shakeScore = shakeCoeff * scoreAmount;
         var shakeVector = new Vector3(shakeScore, shakeScore, shakeScore);
-        Camera.main.DOShakePosition(1, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        Camera.main.DOShakePosition(shakeDuration, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
     }
 }

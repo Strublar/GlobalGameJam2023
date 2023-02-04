@@ -395,11 +395,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDuration: 0.1
   target: {fileID: 920880654}
-  maxChargeThreshold: 0
-  movementSpeed: 0
-  chargingMovementSpeed: 0
-  currentMovementSpeed: 0
-  chargeTime: 0
 --- !u!1001 &193777917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1817,6 +1812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseTarget: {fileID: 920880654}
+  playerRenderer: {fileID: 0}
 --- !u!1818360609 &595754889
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -4867,6 +4863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 963194225}
   shakeCoeff: 0.05
+  shakeDuration: 0.25
   scoreTxt: {fileID: 1780043005}
 --- !u!4 &1938582496
 Transform:
