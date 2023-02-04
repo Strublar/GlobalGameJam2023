@@ -136,7 +136,8 @@ public class RootVisual : MonoBehaviour
         Transform[] m_cuttedRootBones = m_rootCutObject.transform.Find("Armature").transform.GetComponentsInChildren<Transform>();
         for (int i = 0; i < m_cuttedRootBones.Length; i++)
         {
-            m_cuttedRootBones[i].gameObject.AddComponent<Rigidbody>();
+            Rigidbody m_rigidbody = m_cuttedRootBones[i].gameObject.AddComponent<Rigidbody>();
+            m_rigidbody.mass = 50;
             m_cuttedRootBones[i].gameObject.AddComponent<SphereCollider>().radius = 0.2f;
             if(i > 0) 
             {
