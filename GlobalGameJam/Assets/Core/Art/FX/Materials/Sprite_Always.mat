@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprite_Always
+  m_Shader: {fileID: 4800000, guid: d348bf010cac6f54a80bdf459553cda9, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ISPANNING3_ON
+  - _ISPANNING4_ON
+  - _ISPANNING_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ErosionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ErosionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _ActivateEffect: 0
+    - _ActivateEffect2: 0
+    - _ActivateEffect3: 0
+    - _AlphaCoefficient: 1
+    - _BumpScale: 1
+    - _CullMode: 2
+    - _Cutoff: 0.5
+    - _Debug: 0
+    - _Depth: 0
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _DstBlendMode: 10
+    - _EmissiveGlow: 1
+    - _EnableExternalAlpha: 0
+    - _Erosion: 0
+    - _ErosionSmoothness: 1
+    - _ErosionSpeed: 0
+    - _ErosionUseCustomVertexStreams: 0
+    - _Flow: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Glow: 1
+    - _HasAlphaErosion: 0
+    - _HasAlphaMask: 0
+    - _HasSecondaryMap: 0
+    - _Invert: 0
+    - _IsEmissive: 0
+    - _IsPanning: 1
+    - _IsPanning3: 1
+    - _IsPanning4: 1
+    - _MainmapUseCustomVertexStreams: 0
+    - _MaskAlongUVs: 0
+    - _MaskCoefficient: 1
+    - _MaskPower: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoisePower: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmapUseCustomVertexStreams: 0
+    - _Smoothness: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _SrcBlendMode: 1
+    - _UVSec: 0
+    - _U_Speed: 0
+    - _U_Speed2: 0
+    - _UseAlphaChannel: 0
+    - _UseBlueChannelasMask: 0
+    - _UseCustomVertexStreams1X: 0
+    - _UseCustomVertexStreams2: 0
+    - _UseCustomVertexStreams3: 0
+    - _UseGreenChannelasErosion: 0
+    - _V_Speed: 0
+    - _V_Speed2: 0
+    - _ZWrite: 1
+    - __dirty: 1
+    - _isAdditiveOnly: 0
+    - _isBlendedOnly: 0
+    - _isPremultiplied: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ErosionSubColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _ErosionSubColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _FakeFogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _PannerSpeed2: {r: 1, g: 0, b: 0, a: 0}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondaryColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _SecondaryColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _UVMasking: {r: 1, g: 0, b: 0, a: 0}
+    - _UVPanningSPEED: {r: 1, g: 0, b: 0, a: 0}
+    - _XYSpeedZWClampAlpha: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
