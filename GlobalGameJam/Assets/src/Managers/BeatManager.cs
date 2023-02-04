@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +33,7 @@ public class BeatManager : MonoBehaviour
     public void UpdateBeat()
     {
         Debug.Log("Beat");
+        Camera.main.transform.DOPunchPosition(new Vector3(0.25f,0.25f,0.25f),0.2f,5,1f);
         currentBeatPeriod *= beatMultiplierPerBeat;
     }
 

@@ -19,11 +19,13 @@ namespace src
 
         [SerializeField] private float minRootRange;
         [SerializeField] private float maxRootRange;
+        [SerializeField] private GameObject rootContainer;
+        [SerializeField] private MeshRenderer ground;
 
         [Header("Spawn point management")] [SerializeField]
         private GameObject spawnPointContainer;
 
-        [SerializeField] private GameObject rootContainer;
+        
 
         private int currentBeatCount;
         private int currentSpawnPeriod;
@@ -35,18 +37,18 @@ namespace src
 
         public void SpawnSeed()
         {
-            SpawnPoint[] availableSpawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
-            SpawnPoint selectedSpawnPoint = availableSpawnPoints[Random.Range(0, availableSpawnPoints.Length)];
-            SpawnRootAtTarget(selectedSpawnPoint, true);
+            var minBound = ground.bounds.min;
+            var maxBound = ground.bounds.max;
+            SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)), true);
         }
 
-        public void SpawnRootAtTarget(SpawnPoint selectedSpawnPoint, bool isSeed)
+        public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, bool isSeed)
         {
-            var selectedTransform = selectedSpawnPoint.transform;
-            var instantiatedRoot = Instantiate(rootPrefab, selectedTransform.position,
-                selectedTransform.rotation, rootContainer.transform);
+            
+            var instantiatedRoot = Instantiate(rootPrefab, selectedSpawnPoint,
+                Quaternion.identity, rootContainer.transform);
             instantiatedRoot.GetComponent<Root>()
-                .Init(selectedSpawnPoint, selectedSpawnPoint.getRandomNeighbour(), this, isSeed);
+                .Init(selectedSpawnPoint, this, isSeed);
         }
 
         private void Start()
