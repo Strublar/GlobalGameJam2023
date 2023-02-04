@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas mainMenuCanvas;
     [SerializeField] private Canvas deathCanvas;
     [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private AudioSource audioBeat;
+
     private int _score;
-    
-    
-    
+    private int consecutiveHits;
+    private bool hasHitLastBeat;
+
+
     private void Awake()
     {
         instance = this;
@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
     void Start()
     {
         scoreTxt.text = _score.ToString();
     }
+
+    #region UI utilities
 
     public void ToggleMainMenu()
     {
@@ -51,38 +52,66 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         mainMenuCanvas.enabled = false;
-        // musicManager.
+        audioBeat.loop = true;
+        audioBeat.Play();
     }
-    
+
+    public void Retry()
+    {
+        LoadMainScene();
+    }
+
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        GameOn();
+    }
+
     public void Death()
     {
         Time.timeScale = 0;
-        mainMenuCanvas.enabled = true;
+        deathCanvas.enabled = true;
         _score = 0;
     }
+
+    public void DoBeat()
+    {
+        if (!hasHitLastBeat)
+        {
+            consecutiveHits = 0;
+        }
+        hasHitLastBeat = false;
+    }
+
+    #endregion
 
     public void IncrementScore(int scoreAmount)
     {
         _score += scoreAmount;
         if (scoreAmount != 0)
         {
-            scoreTxt.color = GetColorAccordingToScoreBoost(scoreAmount); // The color could be defined by consecutive root cuts            
+            hasHitLastBeat = true;
+            consecutiveHits += 1;
+            scoreTxt.color =
+                GetColorForConsecutiveHits(consecutiveHits);
         }
+
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
         scoreTxt.text = _score.ToString();
-        
     }
-    private static Color GetColorAccordingToScoreBoost(int scoreAmount)
+
+    private static Color GetColorForConsecutiveHits(int consecutiveHits)
     {
-        if (scoreAmount <= 1)
+        if (consecutiveHits <= 1)
         {
             return Color.black;
         }
 
-        if (scoreAmount <= 3)
+        if (consecutiveHits <= 3)
         {
             return Color.yellow;
         }
+
         return Color.red;
     }
 
@@ -92,10 +121,12 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        
+
         var shakeScore = shakeCoeff * scoreAmount;
         var shakeVector = new Vector3(shakeScore, shakeScore, shakeScore);
-        Camera.main.DOShakePosition(shakeDuration, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
+        if (shakeDuration > 0)
+        {
+            Camera.main.DOShakePosition(shakeDuration, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
+        }
     }
-    
 }

@@ -15,6 +15,11 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.ToggleMainMenu();
     }
 
+    public void Retry()
+    {
+        GameManager.instance.Retry();
+    }
+
     public void HighScores()
     {
         Debug.Log("Highscores");

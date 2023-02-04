@@ -154,6 +154,7 @@ public class RootVisual : MonoBehaviour
         isShrinking = true;
         m_rootProgression = position;
         KillFlower();
+        GameManager.instance.IncrementScore(1);
     }
     
 
