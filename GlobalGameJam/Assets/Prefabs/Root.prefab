@@ -243,3 +243,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandingRoot: {fileID: 6288975422327273771}
+  rootModel: {fileID: 5364148276958633488}
+  rootMaterial: {fileID: 0}

@@ -59,6 +59,12 @@ public class Player : MonoBehaviour
                 Debug.Log("Root détecté" + hit.transform.name);
                 hit.transform.GetComponentInParent<Root>().Cut();
             }
+
+            if (hit.transform.CompareTag("Wall"))
+            {
+                Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);
+                Time.timeScale = 0;
+            }
         }
     }
     

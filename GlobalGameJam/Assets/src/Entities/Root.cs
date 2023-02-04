@@ -16,6 +16,10 @@ public enum RootState
 public class Root : MonoBehaviour
 {
     [SerializeField] private GameObject expandingRoot;
+    [SerializeField] private GameObject rootModel;
+    [SerializeField] private GameObject gameManager;
+    
+    
 
     private RootsManager manager;
     private SpawnPoint spawnPoint;
@@ -50,15 +54,25 @@ public class Root : MonoBehaviour
                 state = RootState.Expanded;
             yield return null;
         }
-        if(state == RootState.Expanded)
+        if (state == RootState.Expanded)
+        {
             manager.SpawnRootAtTarget(target,false);
+            foreach (Transform current in expandingRoot.transform)
+            {
+                current.gameObject.tag = "Wall";
+                rootModel.GetComponent<MeshRenderer>().material.color = Color.magenta;
+            }
+        }
+            
     }
 
     public void Cut()
     {
         state = RootState.Cut;
         Destroy(expandingRoot);
+        GameManager.instance.IncrementScore();
         if(isSeed)
             Destroy(gameObject);
+        
     }
 }

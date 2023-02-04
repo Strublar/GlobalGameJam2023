@@ -42,7 +42,7 @@ namespace src
 
         public void SpawnRootAtTarget(SpawnPoint selectedSpawnPoint,bool isSeed)
         {
-            Transform selectedTransform = selectedSpawnPoint.transform;
+            var selectedTransform = selectedSpawnPoint.transform;
             var instantiatedRoot = Instantiate(rootPrefab, selectedTransform.position,
                 selectedTransform.rotation, rootContainer.transform);
             instantiatedRoot.GetComponent<Root>().Init(selectedSpawnPoint,selectedSpawnPoint.getRandomNeighbour(),this, isSeed);
