@@ -38,20 +38,20 @@ namespace src
             currentSpawnPeriod = baseSpawnPeriod;
         }
         
-        public void SpawnRoot()
+        public void SpawnSeed()
         {
             SpawnPoint[] availableSpawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
             SpawnPoint selectedSpawnPoint = availableSpawnPoints[Random.Range(0, availableSpawnPoints.Length)];
-            SpawnRootAtTarget(selectedSpawnPoint);
+            SpawnRootAtTarget(selectedSpawnPoint,true);
 
         }
 
-        public void SpawnRootAtTarget(SpawnPoint selectedSpawnPoint)
+        public void SpawnRootAtTarget(SpawnPoint selectedSpawnPoint,bool isSeed)
         {
             Transform selectedTransform = selectedSpawnPoint.transform;
             var instantiatedRoot = Instantiate(rootPrefab, selectedTransform.position,
                 selectedTransform.rotation, rootContainer.transform);
-            instantiatedRoot.GetComponent<Root>().Init(selectedSpawnPoint,selectedSpawnPoint.getRandomNeighbour(),this);
+            instantiatedRoot.GetComponent<Root>().Init(selectedSpawnPoint,selectedSpawnPoint.getRandomNeighbour(),this, isSeed);
         }
 
         void Update()
@@ -61,7 +61,7 @@ namespace src
             {
                 currentTimer = 0f;
                 currentSpawnPeriod *= spawnPeriodMultiplierPerSpawn;
-                SpawnRoot();
+                SpawnSeed();
             }
         }
 

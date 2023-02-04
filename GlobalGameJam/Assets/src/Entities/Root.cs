@@ -22,12 +22,14 @@ public class Root : MonoBehaviour
     private SpawnPoint target;
     private RootState state = RootState.Expanding;
 
-    public void Init(SpawnPoint spawnPoint, SpawnPoint target, RootsManager manager)
+    private bool isSeed;
+    public void Init(SpawnPoint spawnPoint, SpawnPoint target, RootsManager manager, bool isSeed)
     {
         this.spawnPoint = spawnPoint;
         this.target = target;
         this.manager = manager;
-
+        this.isSeed = isSeed;
+        
         transform.LookAt(target.transform);
         StartCoroutine(Expand());
     }
@@ -49,12 +51,14 @@ public class Root : MonoBehaviour
             yield return null;
         }
         if(state == RootState.Expanded)
-            manager.SpawnRootAtTarget(target);
+            manager.SpawnRootAtTarget(target,false);
     }
 
     public void Cut()
     {
         state = RootState.Cut;
         Destroy(expandingRoot);
+        if(isSeed)
+            Destroy(gameObject);
     }
 }
