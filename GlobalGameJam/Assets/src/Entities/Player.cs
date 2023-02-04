@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float minDashThreshold;
     public float maxDashThreshold;
 
+    [SerializeField] private AnimationCurve velocityCurve;
+    
     [SerializeField] private float dashDuration;
     [SerializeField] private Transform target;
 
@@ -47,7 +49,8 @@ public class Player : MonoBehaviour
         while (currentDuration < dashDuration)
         {
             currentDuration += Time.deltaTime;
-            transform.position = Vector3.Lerp(from, from + direction, currentDuration / dashDuration);
+            var currentPoint = velocityCurve.Evaluate(currentDuration / dashDuration);
+            transform.position = Vector3.Lerp(from, from + direction, currentPoint);
             yield return null;
         }
 
