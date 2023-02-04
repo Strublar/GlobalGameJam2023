@@ -149,8 +149,9 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.CompareTag("Wall"))
             {
-                Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);
-                Time.timeScale = 0;
+                //Debug.Log("Tu meurs parce que tu es rentré dans un" + hit.transform.tag);
+                //Time.timeScale = 0;
+                GameManager.instance.Death();
             }
         }
     }
