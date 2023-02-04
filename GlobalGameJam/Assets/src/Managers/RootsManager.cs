@@ -14,8 +14,8 @@ namespace src
 
         [Header("Root generation management")]
         [SerializeField] private GameObject rootPrefab;
-        [SerializeField] private float baseSpawnPeriod;
-        [SerializeField] private float spawnPeriodMultiplierPerSpawn;
+        [SerializeField] private int baseSpawnPeriod;
+        //[SerializeField] private  spawnPeriodMultiplierPerSpawn;
         
         [SerializeField] private float minRootRange;
         [SerializeField] private float maxRootRange;
@@ -24,8 +24,8 @@ namespace src
         [SerializeField] private GameObject spawnPointContainer;
         [SerializeField] private GameObject rootContainer;
 
-        /*private float currentSpawnPeriod;
-        private float currentTimer = 0f;*/
+        private int currentBeatCount;
+        private int currentSpawnPeriod;
 
         private void Awake()
         {
@@ -50,18 +50,12 @@ namespace src
 
         private void Start()
         {
+            currentSpawnPeriod = baseSpawnPeriod;
             BeatManager.OffBeat.AddListener(SpawnSeed);
         }
 
-        void Update()
+        private void SpawnOffBeat()
         {
-            /*currentTimer += Time.deltaTime;
-            if (currentTimer >= currentSpawnPeriod)
-            {
-                currentTimer = 0f;
-                currentSpawnPeriod *= spawnPeriodMultiplierPerSpawn;
-                SpawnSeed();
-            }*/
             
         }
 

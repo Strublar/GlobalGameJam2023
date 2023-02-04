@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float minDashForce;
-    [SerializeField] private float maxDashForce;
+    public float minDashForce;
+    public float maxDashForce;
 
-    [SerializeField] private float minDashThreshold;
-    [SerializeField] private float maxDashThreshold;
+    public float minDashThreshold;
+    public float maxDashThreshold;
 
     [SerializeField] private float dashDuration;
     [SerializeField] private Transform target;
