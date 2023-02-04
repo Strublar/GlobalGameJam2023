@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject cameraObj;
     [SerializeField] private float shakeCoeff;
     [SerializeField] private float shakeDuration;
+    [SerializeField] private MusicManager musicManager;
+    [SerializeField] private Canvas mainMenuCanvas;
+    
     
     
     
     private void Awake()
     {
         instance = this;
+        Time.timeScale = 0; // Stop at main menu
     }
 
     [SerializeField] private TextMeshProUGUI scoreTxt;
@@ -25,6 +30,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         scoreTxt.text = _score.ToString();
+    }
+
+    public void GameOn()
+    {
+        Time.timeScale = 1;
+        mainMenuCanvas.enabled = false;
+        // musicManager.
+    }
+    
+    public void Death()
+    {
+        Time.timeScale = 0;
+        mainMenuCanvas.enabled = true;
+        _score = 0;
     }
 
     public void IncrementScore(int scoreAmount)
@@ -63,4 +82,5 @@ public class GameManager : MonoBehaviour
         var shakeVector = new Vector3(shakeScore, shakeScore, shakeScore);
         Camera.main.DOShakePosition(shakeDuration, shakeVector, 20, 45f, false, ShakeRandomnessMode.Harmonic);
     }
+    
 }
