@@ -53,6 +53,10 @@ public class Player : MonoBehaviour
 
         RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude);
         var rootCuts = Array.FindAll(hits, hit => hit.transform.CompareTag("Root"));
+        foreach (var rootCut in rootCuts)
+        {
+            rootCut.transform.GetComponentInParent<Root>().Cut();
+        }
         GameManager.instance.IncrementScore(rootCuts.Length);
         foreach (var hit in hits)
         {

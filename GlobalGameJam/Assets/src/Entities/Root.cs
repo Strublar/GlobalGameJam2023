@@ -63,7 +63,6 @@ public class Root : MonoBehaviour
                 rootModel.GetComponent<MeshRenderer>().material.color = Color.magenta;
             }
         }
-            
     }
 
     public void Cut()
