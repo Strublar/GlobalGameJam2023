@@ -26,8 +26,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float playerPunchScalePower;
     [SerializeField] private float playerPunchScaleDuration;
-    
 
+
+    [SerializeField] private Animator scissorsAnimator;
+    
     public void Awake()
     {
         BeatManager.Beat.AddListener(Dash);
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
     private void OnOffBeat()
     {
         transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
+        scissorsAnimator.Play("DashIdle");
     }
 
     private void Dash()
@@ -107,6 +110,7 @@ public class Player : MonoBehaviour
 
     IEnumerator DashCoroutine(Vector3 from, Vector3 direction)
     {
+        scissorsAnimator.Play("WeaponSlash");
         var currentDuration = 0f;
         while (currentDuration < dashDuration)
         {
