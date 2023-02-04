@@ -386,6 +386,11 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDuration: 0.1
   target: {fileID: 920880654}
+  maxChargeThreshold: 0
+  movementSpeed: 0
+  chargingMovementSpeed: 0
+  currentMovementSpeed: 0
+  chargeTime: 0
 --- !u!1001 &193777917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2566,7 +2571,7 @@ MonoBehaviour:
   minRootRange: 20
   maxRootRange: 50
   rootContainer: {fileID: 210968156}
-  ground: {fileID: 265969988}
+  ground: {fileID: 265969991}
   spawnPointContainer: {fileID: 1086684201}
 --- !u!1 &920880653
 GameObject:

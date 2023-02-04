@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
 
     public void Awake()
     {
-        //BeatManager.Beat.AddListener(Dash);
+        BeatManager.Beat.AddListener(Dash);
     }
 
     #region Essais Landry
 
-    [Header("Landry")] [SerializeField] private float maxChargeThreshold;
+    /*[Header("Landry")] [SerializeField] private float maxChargeThreshold;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float chargingMovementSpeed;
     
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             StartCoroutine(DashCoroutine(position, forceVector));
             chargeTime = 0;
         }
-    }
+    }*/
 
     #endregion
 
