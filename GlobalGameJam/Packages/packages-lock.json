@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.pixelplacement.itween": {
-      "version": "file:iTween-Unity-master",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
 
         var forceVector = (target.position - position).normalized * dashForce;
         StartCoroutine(DashCoroutine(position, forceVector));
+        
     }
 
     IEnumerator DashCoroutine(Vector3 from, Vector3 direction)
