@@ -1327,8 +1327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914bb5af16b6eb04bbe5182c262bd754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBeatPeriod: 1.6666666
-  offBeatOffset: 0.8333334
+  initialBeatPeriod: 0.8333335
+  offBeatOffset: 0.8333335
   beatMultiplierPerBeat: 1
 --- !u!1 &857703128
 GameObject:
