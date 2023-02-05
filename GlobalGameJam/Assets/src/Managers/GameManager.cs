@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        scoreTxt.text = _score.ToString();
+        scoreTxt.text = "Score : "+ _score;
         GameOn();
     }
 

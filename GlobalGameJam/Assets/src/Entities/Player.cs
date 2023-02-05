@@ -44,51 +44,6 @@ public class Player : MonoBehaviour
         BeatManager.OffBeat.AddListener(OnOffBeat);
     }
 
-    #region Essais Landry
-
-    /*[Header("Landry")] [SerializeField] private float maxChargeThreshold;
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private float chargingMovementSpeed;
-    
-    
-    [SerializeField] private float currentMovementSpeed;
-    [SerializeField]private float chargeTime = 0f;
-
-    private void Update()
-    {
-        var direction = target.position - transform.position;
-        transform.position += direction.normalized * (currentMovementSpeed * Time.deltaTime);
-        if (Input.GetMouseButton(0))
-        {
-            currentMovementSpeed = chargingMovementSpeed;
-            chargeTime += Time.deltaTime;
-        }
-        else
-        {
-            currentMovementSpeed = movementSpeed;
-        }
-
-        if (Input.GetMouseButtonUp(0) && chargeTime > 0)
-        {
-            var position = transform.position;
-
-            float dashForce;
-            if (chargeTime >= maxChargeThreshold)
-                dashForce = maxDashForce;
-            else
-            {
-                dashForce = minDashForce + chargeTime * (maxDashForce - minDashForce) /
-                    maxChargeThreshold;
-            }
-
-            var forceVector = (target.position - position).normalized * dashForce;
-            StartCoroutine(DashCoroutine(position, forceVector));
-            chargeTime = 0;
-        }
-    }*/
-
-    #endregion
-
     private void OnOffBeat()
     {
         if (almightyScissors)
@@ -134,10 +89,11 @@ public class Player : MonoBehaviour
         RaycastHit[] bodyHits = Physics.RaycastAll(from, direction, direction.magnitude, dashPhysicsLayerMask.value);
         RaycastHit[] cutHits = Physics.RaycastAll(from, direction, direction.magnitude + scissorsRange);
         
-        var wallsHit =Array.FindAll(bodyHits, hit => hit.transform.CompareTag("Wall"));
-        if (wallsHit.Length != 0 )
+        var wallsHit = Array.FindAll(bodyHits, hit => hit.transform.CompareTag("Wall"));
+        if (wallsHit.Length != 0 && !almightyScissors)
         {
-            if (almightyScissors)
+            GameManager.instance.Death();    
+            /*if (almightyScissors)
             {
                 GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
                 foreach (var hit in wallsHit)
@@ -148,10 +104,9 @@ public class Player : MonoBehaviour
             }
             else
             {
-                GameManager.instance.Death();    
-            }
+                
+            }*/
         }
-        
         foreach (var hit in cutHits)
         {
             if (hit.transform.CompareTag("Root")) 
@@ -163,6 +118,16 @@ public class Player : MonoBehaviour
                     hittedRoot.CutRoot(hittedLocalPoint);
                     Instantiate(DistortionFX, targetPosition, UnityEngine.Quaternion.identity);
                 }
+            }
+        }
+        
+        var wallsCut = Array.FindAll(cutHits, hit => hit.transform.CompareTag("Wall"));
+        if (almightyScissors && wallsCut.Length > 0)
+        {
+            GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
+            foreach (var hit in wallsCut)
+            {
+                Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
             }
         }
         
