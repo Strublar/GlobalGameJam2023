@@ -205,7 +205,7 @@ public class RootVisual : MonoBehaviour
     {
         if (m_rootProgression > 0)
         {
-            m_rootProgression -= Time.deltaTime * 0.2f;
+            m_rootProgression -= Time.deltaTime * 0.4f;
             m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, m_rootProgression, m_MaskParams.z, m_MaskParams.w));
         }
     }

@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject DistortionFX;
     [SerializeField] private GameObject fireOverlay;
-    
+
 
     public void Awake()
     {
@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
         }
 
         var forceVector = (target.position - position).normalized * dashForce;
+
         StartCoroutine(DashCoroutine(position, forceVector));
     }
 
@@ -145,8 +146,10 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        
-        
+
+
+
+
     }
 
     public void SetAlmightyScissors()
@@ -162,4 +165,7 @@ public class Player : MonoBehaviour
         fireOverlay.SetActive(false);
         scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
+
+  
+
 }
