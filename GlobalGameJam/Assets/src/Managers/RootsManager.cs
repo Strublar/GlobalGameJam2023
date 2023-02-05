@@ -36,19 +36,24 @@ namespace src
 
         public Transform rootsTargetPoint;
 
+        public int seedsPerOffBeat = 1;
+
         private void Awake()
         {
             instance = this;
         }
 
-        public void SpawnSeed()
+        public void SpawnSeed(int amount)
         {
             Debug.Log("SPAWN");
             var minBound = ground.bounds.min;
             var maxBound = ground.bounds.max;
             Debug.Log((Random.Range(0, 2) * 2 - 1));
             //SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)),3);
-            SpawnRootFromPosition(new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0,2)*2-1),0, Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)),3);
+            for (int i = 0; i < amount; i++)
+            {
+                SpawnRootFromPosition(new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1), 0, Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)), 3);
+            }
         }
 
         public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, int longevity, float parentRootAngle = 0)
@@ -84,7 +89,7 @@ namespace src
             if (currentBeatCount >= currentSpawnPeriod)
             {
                 currentBeatCount = 0;
-                SpawnSeed();
+                SpawnSeed(seedsPerOffBeat);
             }
         }
 
