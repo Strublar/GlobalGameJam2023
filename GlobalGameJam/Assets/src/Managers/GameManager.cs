@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private TextMeshProUGUI deathRecapScore;
     [SerializeField] private Canvas scoreCanvas;
+    [SerializeField] private TextMeshProUGUI consecutiveHitsTxt;
+    
     
 
     [SerializeField] private int boostThreshold;
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
         IncrementConsecutiveHits();
         handlePowerUp(consecutiveHitsForBoost);
         HandleVisualsForScore(scoreAmount);
+        HandleConsecutiveHitVisual();
     }
 
     private void IncrementConsecutiveHits()
@@ -130,6 +133,7 @@ public class GameManager : MonoBehaviour
     {
         consecutiveHitsForVisual = 0;
         consecutiveHitsForBoost = 0;
+        HandleConsecutiveHitVisual();
     }
 
     public void IncrementScoreWhileOnPowerUp(int wallCountDestroyed)
@@ -144,8 +148,14 @@ public class GameManager : MonoBehaviour
         scoreTxt.color = GetColorForConsecutiveHits(consecutiveHitsForVisual);
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
         scoreTxt.text = "Score : " + _score;
+        
     }
 
+    private void HandleConsecutiveHitVisual()
+    {
+        consecutiveHitsTxt.text = "Combo bonus : " + consecutiveHitsForVisual;
+        consecutiveHitsTxt.color = GetColorForConsecutiveHits(consecutiveHitsForVisual);
+    }
     private void handlePowerUp(int consecutiveHitsForBoost)
     {
         if (consecutiveHitsForBoost >= boostThreshold)
