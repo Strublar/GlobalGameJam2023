@@ -25,10 +25,16 @@ namespace src
         [Header("Spawn point management")] [SerializeField]
         private GameObject spawnPointContainer;
 
-        
+
+        [SerializeField] private float spawnRadiusMin;
+        [SerializeField] private float spawnRadiusMax;
 
         private int currentBeatCount;
         private int currentSpawnPeriod;
+
+        public Vector3 rootsSpawnOffset;
+
+        public Transform rootsTargetPoint;
 
         private void Awake()
         {
@@ -40,7 +46,9 @@ namespace src
             Debug.Log("SPAWN");
             var minBound = ground.bounds.min;
             var maxBound = ground.bounds.max;
-            SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)),3);
+            Debug.Log((Random.Range(0, 2) * 2 - 1));
+            //SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)),3);
+            SpawnRootFromPosition(new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0,2)*2-1),0, Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)),3);
         }
 
         public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, int longevity = 3, float parentRootAngle = 0)
@@ -53,14 +61,15 @@ namespace src
             }
             else 
             {
-                rootYRotation = Random.Range(0, 360);
+                rootYRotation = Quaternion.LookRotation(rootsTargetPoint.position - selectedSpawnPoint, new Vector3(0, 1, 0)).eulerAngles.y;
+
 
             }
 
-            var instantiatedRoot = Instantiate(rootPrefab, selectedSpawnPoint,
+            var instantiatedRoot = Instantiate(rootPrefab, new Vector3(selectedSpawnPoint.x, rootsSpawnOffset.y, selectedSpawnPoint.z),
                 Quaternion.Euler(90, rootYRotation, 0), rootContainer.transform);
-           
 
+            Debug.Log("SPAWN WITH OFFSET : " + rootsSpawnOffset);
             rootPrefab.GetComponent<RootVisual>().Longevity = longevity;
         }
 
