@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
 
     private void OnOffBeat()
     {
-        transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
         scissorsAnimator.Play("IdleDash");
     }
 
