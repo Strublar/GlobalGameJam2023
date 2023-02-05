@@ -39,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PostProcess
   m_SortingLayers:
   - name: New Layer 1
     uniqueID: 2797541297
