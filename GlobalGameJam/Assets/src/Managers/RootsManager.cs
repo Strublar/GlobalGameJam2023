@@ -51,7 +51,7 @@ namespace src
             SpawnRootFromPosition(new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0,2)*2-1),0, Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)),3);
         }
 
-        public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, int longevity = 3, float parentRootAngle = 0)
+        public void SpawnRootFromPosition(Vector3 selectedSpawnPoint, int longevity, float parentRootAngle = 0)
         {
             float rootYRotation;
 
@@ -69,8 +69,7 @@ namespace src
             var instantiatedRoot = Instantiate(rootPrefab, new Vector3(selectedSpawnPoint.x, rootsSpawnOffset.y, selectedSpawnPoint.z),
                 Quaternion.Euler(90, rootYRotation, 0), rootContainer.transform);
 
-            Debug.Log("SPAWN WITH OFFSET : " + rootsSpawnOffset);
-            rootPrefab.GetComponent<RootVisual>().Longevity = longevity;
+            instantiatedRoot.GetComponent<RootVisual>().Longevity = longevity;
         }
 
         private void Start()
