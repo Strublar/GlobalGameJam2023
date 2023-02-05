@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         if (consecutiveHits <= 1)
         {
-            return Color.black;
+            return Color.white;
         }
 
         if (consecutiveHits <= 3)
