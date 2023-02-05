@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using src;
+using UnityEditor.Animations;
 
 
 public class RootVisual : MonoBehaviour
@@ -180,6 +181,7 @@ public class RootVisual : MonoBehaviour
         if(m_rootProgression < 1) 
         {
             m_rootProgression += Time.deltaTime / timeToGrow;
+            linkedFlower.transform.localScale = Vector3.one * m_rootProgression;
             m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, m_rootProgression, m_MaskParams.z, m_MaskParams.w));
         }
         else 
@@ -219,6 +221,7 @@ public class RootVisual : MonoBehaviour
         {      
             RootsManager.instance.SpawnRootFromPosition(endPoint, Longevity, transform.eulerAngles.y);
         }
+        linkedFlower.GetComponentInChildren<Animator>().Play("Eclosion");
 
     }
 }
