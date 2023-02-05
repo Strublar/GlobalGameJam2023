@@ -11,11 +11,8 @@ namespace src
 
         [Header("Root behaviour")] public float expandDuration;
 
-        [Header("Root generation management")] 
-        [SerializeField] private GameObject rootPrefab;
-
-        [SerializeField] private int baseSpawnPeriod;
-        //[SerializeField] private  spawnPeriodMultiplierPerSpawn;
+        [Header("Root generation management")] [SerializeField]
+        private GameObject rootPrefab;
 
         [SerializeField] private float minRootRange;
         [SerializeField] private float maxRootRange;
@@ -29,14 +26,17 @@ namespace src
         [SerializeField] private float spawnRadiusMin;
         [SerializeField] private float spawnRadiusMax;
 
-        private int currentBeatCount;
-        private int currentSpawnPeriod;
+
 
         public Vector3 rootsSpawnOffset;
 
         public Transform rootsTargetPoint;
 
-        public int seedsPerOffBeat = 1;
+        public float baseSpawnPerBeat = 0.3f;
+        public float spawnAccelerationPerBeat = 0.03f;
+        
+        private float currentBeatProgression;
+        private float currentSpawnPerBeat;
 
         private void Awake()
         {
@@ -52,7 +52,9 @@ namespace src
             //SpawnRootFromPosition(new Vector3(Random.Range(minBound.x, maxBound.x),0, Random.Range(minBound.z, maxBound.z)),3);
             for (int i = 0; i < amount; i++)
             {
-                SpawnRootFromPosition(new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1), 0, Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)), 3);
+                SpawnRootFromPosition(
+                    new Vector3(Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1), 0,
+                        Random.Range(spawnRadiusMin, spawnRadiusMax) * (Random.Range(0, 2) * 2 - 1)), 3);
             }
         }
 
@@ -60,18 +62,18 @@ namespace src
         {
             float rootYRotation;
 
-            if (longevity < 3) 
+            if (longevity < 3)
             {
                 rootYRotation = parentRootAngle + Random.Range(-60, 60);
             }
-            else 
+            else
             {
-                rootYRotation = Quaternion.LookRotation(rootsTargetPoint.position - selectedSpawnPoint, new Vector3(0, 1, 0)).eulerAngles.y;
-
-
+                rootYRotation = Quaternion
+                    .LookRotation(rootsTargetPoint.position - selectedSpawnPoint, new Vector3(0, 1, 0)).eulerAngles.y;
             }
 
-            var instantiatedRoot = Instantiate(rootPrefab, new Vector3(selectedSpawnPoint.x, rootsSpawnOffset.y, selectedSpawnPoint.z),
+            var instantiatedRoot = Instantiate(rootPrefab,
+                new Vector3(selectedSpawnPoint.x, rootsSpawnOffset.y, selectedSpawnPoint.z),
                 Quaternion.Euler(90, rootYRotation, 0), rootContainer.transform);
 
             instantiatedRoot.GetComponent<RootVisual>().Longevity = longevity;
@@ -79,18 +81,27 @@ namespace src
 
         private void Start()
         {
-            currentSpawnPeriod = baseSpawnPeriod;
+            currentSpawnPerBeat = baseSpawnPerBeat;
             BeatManager.OffBeat.AddListener(SpawnOffBeat);
         }
 
         private void SpawnOffBeat()
         {
-            currentBeatCount++;
-            if (currentBeatCount >= currentSpawnPeriod)
+            currentBeatProgression += currentSpawnPerBeat;
+            currentSpawnPerBeat += spawnAccelerationPerBeat;
+
+            for (int i = 0; i < Mathf.FloorToInt(currentBeatProgression); i++)
             {
-                currentBeatCount = 0;
-                SpawnSeed(seedsPerOffBeat);
+                SpawnSeed(1);
             }
+
+            currentBeatProgression -= Mathf.FloorToInt(currentBeatProgression);
+            /*
+            if (currentBeatProgression >= currentSpawnPerBeat)
+            {
+                currentBeatProgression = 0;
+                SpawnSeed(baseSpawnPerBeat);
+            }*/
         }
 
         public float GetMinRootRange()
