@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private BeatManager beatManager;
     [SerializeField] private MusicManager musicManager;
-    
-    
+    [SerializeField] private TextMeshProUGUI deathRecapScore;
+    [SerializeField] private Canvas scoreCanvas;
     
 
     [SerializeField] private int boostThreshold;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        scoreTxt.text = "Score : "+ _score;
+        scoreTxt.text = "Score : " + _score;
         GameOn();
     }
 
@@ -86,7 +86,9 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
+        deathRecapScore.text = "Score : " + _score;
         deathCanvas.enabled = true;
+        scoreCanvas.enabled = false;
         deathCanvas.GetComponent<Animator>().enabled = true;
         GameOff();
         musicManager.Death();
