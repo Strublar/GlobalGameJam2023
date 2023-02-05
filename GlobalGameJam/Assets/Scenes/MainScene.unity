@@ -330,6 +330,7 @@ MonoBehaviour:
   maxDashForce: 20
   minDashThreshold: 10
   maxDashThreshold: 30
+  scissorsRange: 5
   velocityCurve:
     serializedVersion: 2
     m_Curve:

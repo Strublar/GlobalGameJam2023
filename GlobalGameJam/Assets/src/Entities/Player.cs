@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public float minDashThreshold;
     public float maxDashThreshold;
 
+    [SerializeField] private float scissorsRange;
+    
+
     [SerializeField] private AnimationCurve velocityCurve;
 
     [SerializeField] private float dashDuration;
@@ -114,28 +117,14 @@ public class Player : MonoBehaviour
     IEnumerator DashCoroutine(Vector3 from, Vector3 direction)
     {
         scissorsAnimator.Play("WeaponSlash");
-        var currentDuration = 0f;
-        while (currentDuration < dashDuration)
-        {
-            currentDuration += Time.deltaTime;
-            var currentPoint = velocityCurve.Evaluate(currentDuration / dashDuration);
-            transform.position = Vector3.Lerp(from, from + direction, currentPoint);
-            yield return null;
-        }
-
-        RaycastHit[] hits = Physics.RaycastAll(from, direction, direction.magnitude, dashPhysicsLayerMask.value);
-        /*
-        var rootCuts = Array.FindAll(hits, hit => hit.transform.CompareTag("Root"));
-        foreach (var rootCut in rootCuts)
-        {
-            rootCut.transform.GetComponentInParent<RootVisual>().CutRoot(UnityEngine.Random.Range(0.1f,0.8f));
-            //hits
-            //FIND OUT WHERE WE HIT THE ROOT
-        }*/
         
-        for (int i = 0; i < hits.Length; i++)
+        var targetPosition = from + direction;
+
+        RaycastHit[] bodyHits = Physics.RaycastAll(from, direction, direction.magnitude, dashPhysicsLayerMask.value);
+        RaycastHit[] cutHits = Physics.RaycastAll(targetPosition, direction, scissorsRange);
+        
+        foreach (var hit in bodyHits)
         {
-            RaycastHit hit = hits[i];
             if (hit.transform.CompareTag("Root")) 
             {
                 RootVisual hittedRoot = hit.transform.GetComponentInParent<RootVisual>();
@@ -145,14 +134,33 @@ public class Player : MonoBehaviour
                     hittedRoot.CutRoot(hittedLocalPoint);
 
                 }
-
-                // Debug.LogWarning(hit.transform.GetComponentInParent<RootVisual>().transform.InverseTransformPoint(hit.point).y/2);
-
             }
         }
+        foreach (var hit in cutHits)
+        {
+            if (hit.transform.CompareTag("Root")) 
+            {
+                RootVisual hittedRoot = hit.transform.GetComponentInParent<RootVisual>();
+                float hittedLocalPoint = hittedRoot.transform.InverseTransformPoint(hit.point).y / 2;
+                if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
+                {
+                    hittedRoot.CutRoot(hittedLocalPoint);
 
+                }
+            }
+        }
         
-        foreach (var hit in hits)
+        
+        var currentDuration = 0f;
+        while (currentDuration < dashDuration)
+        {
+            currentDuration += Time.deltaTime;
+            var currentPoint = velocityCurve.Evaluate(currentDuration / dashDuration);
+            transform.position = Vector3.Lerp(from, targetPosition, currentPoint);
+            yield return null;
+        }
+        
+        foreach (var hit in bodyHits)
         {
             if (hit.transform.CompareTag("Wall"))
             {
