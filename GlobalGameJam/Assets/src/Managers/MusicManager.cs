@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioSource gameMusic;
+    [SerializeField] private AudioSource deathMusic;
+    [SerializeField] private List<AudioSource> cutSounds;
+
+    public void StartGameMusic()
     {
-        
+        gameMusic.loop = true;
+        gameMusic.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Death()
     {
-        
+        var audioMixer = gameMusic.outputAudioMixerGroup.audioMixer;
+        audioMixer.TransitionToSnapshots(new []{audioMixer.FindSnapshot("Death")}, new []{5f}, 1f);
+        StopGameMusic();
+        // PlayDeath();
     }
+
+    public void StopGameMusic()
+    {
+        gameMusic.loop = false;
+        gameMusic.Stop();
+    }
+
+    public void PlayDeath()
+    {
+        deathMusic.Play();
+    }
+
+    public void playRandomCutSound()
+    {
+        cutSounds[Random.Range(0, cutSounds.Count)].Play();
+    }
+
 }

@@ -143,8 +143,6 @@ public class Player : MonoBehaviour
             {
                 GameManager.instance.Death();    
             }
-            
-            yield return null;
         }
         
         foreach (var hit in cutHits)

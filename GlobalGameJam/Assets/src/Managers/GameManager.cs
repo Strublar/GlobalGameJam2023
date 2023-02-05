@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas mainMenuCanvas;
     [SerializeField] private Canvas deathCanvas;
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    [SerializeField] private AudioSource audioBeat;
+    // [SerializeField] private AudioSource audioBeat;
     [SerializeField] private Player player;
     [SerializeField] private BeatManager beatManager;
+    [SerializeField] private MusicManager musicManager;
+    
     
 
     [SerializeField] private int boostThreshold;
@@ -62,8 +64,7 @@ public class GameManager : MonoBehaviour
         beatManager.Init();
         Time.timeScale = 1;
         mainMenuCanvas.enabled = false;
-        audioBeat.loop = true;
-        audioBeat.Play();
+        musicManager.StartGameMusic();
     }
 
     public void GameOff()
@@ -85,6 +86,9 @@ public class GameManager : MonoBehaviour
     {
         //Time.timeScale = 0;
         GameOff();
+        musicManager.Death();
+        // musicManager.StopGameMusic();
+        // musicManager.PlayDeath();
         deathCanvas.enabled = true;
         deathCanvas.GetComponent<Animator>().enabled = true;
         _score = 0;
