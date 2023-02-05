@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using src;
-using UnityEditor.Animations;
-
+using UnityEngine;
 
 public class RootVisual : MonoBehaviour
 {
