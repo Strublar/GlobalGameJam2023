@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator scissorsAnimator;
 
     [SerializeField] private GameObject DistortionFX;
+    [SerializeField] private GameObject fireOverlay;
+    
 
     public void Awake()
     {
@@ -127,7 +129,9 @@ public class Player : MonoBehaviour
             GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
             foreach (var hit in wallsCut)
             {
+                Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().linkedFlower);
                 Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
+                Instantiate(DistortionFX, targetPosition, UnityEngine.Quaternion.identity);
             }
         }
         
@@ -148,12 +152,14 @@ public class Player : MonoBehaviour
     public void SetAlmightyScissors()
     {
         almightyScissors = true;
+        fireOverlay.SetActive(true);
         //scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public void ResetAlmightyScissors()
     {
         almightyScissors = false;
+        fireOverlay.SetActive(false);
         scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

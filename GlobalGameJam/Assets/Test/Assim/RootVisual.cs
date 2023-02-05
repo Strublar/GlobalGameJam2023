@@ -31,7 +31,7 @@ public class RootVisual : MonoBehaviour
     public int Longevity = 3;
 
     public GameObject FleurPrefab;
-    private GameObject linkedFlower;
+    public GameObject linkedFlower;
 
     public float timeToFadeOut = 1;
     private float fadeOutTimer = 0;

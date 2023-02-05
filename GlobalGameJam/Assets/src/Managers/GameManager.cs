@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MusicManager musicManager;
     
     
+    
 
     [SerializeField] private int boostThreshold;
     [SerializeField] private int boostScoreAmount;
