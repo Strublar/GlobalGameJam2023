@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
-        //Time.timeScale = 0;
         deathCanvas.enabled = true;
         deathCanvas.GetComponent<Animator>().enabled = true;
         GameOff();
