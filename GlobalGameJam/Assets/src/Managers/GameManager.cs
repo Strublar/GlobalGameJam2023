@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
-        GameOn();
     }
 
     public void Death()

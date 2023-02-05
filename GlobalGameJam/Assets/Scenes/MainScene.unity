@@ -1273,6 +1273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialBeatPeriod: 0.8333334
   offBeatOffset: 0.4166667
+  initialOffset: 0.4166667
   beatMultiplierPerBeat: 1
 --- !u!1 &857703128
 GameObject:
