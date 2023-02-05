@@ -2310,6 +2310,8 @@ MonoBehaviour:
   deathCanvas: {fileID: 1475818975}
   scoreTxt: {fileID: 870207847}
   audioBeat: {fileID: 722852129}
+  player: {fileID: 190101919}
+  boostThreshold: 0
 --- !u!4 &1938582496
 Transform:
   m_ObjectHideFlags: 0

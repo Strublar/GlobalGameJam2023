@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas deathCanvas;
     [SerializeField] private TextMeshProUGUI scoreTxt;
     [SerializeField] private AudioSource audioBeat;
+    [SerializeField] private Player player;
+    
+
+    [SerializeField] private int boostThreshold;
+    
 
     private int _score;
     private int consecutiveHits;
@@ -91,12 +96,22 @@ public class GameManager : MonoBehaviour
         {
             hasHitLastBeat = true;
             consecutiveHits += 1;
-            scoreTxt.color =
-                GetColorForConsecutiveHits(consecutiveHits);
+            scoreTxt.color = GetColorForConsecutiveHits(consecutiveHits);
+            handlePowerUp(consecutiveHits);
         }
 
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
         scoreTxt.text = _score.ToString();
+    }
+
+    private void handlePowerUp(int consecutiveHits)
+    {
+        if (consecutiveHits >= boostThreshold)
+        {
+            Debug.Log("ALMIGHT ACTIVATED");
+            // player.
+            player.SetAlmightyScissors();
+        }
     }
 
     private static Color GetColorForConsecutiveHits(int consecutiveHits)

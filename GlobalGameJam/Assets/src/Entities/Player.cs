@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerPunchScalePower;
     [SerializeField] private float playerPunchScaleDuration;
 
+    private bool almightyScissors = false;
+    
+
 
     [SerializeField] private Animator scissorsAnimator;
     
@@ -153,8 +156,22 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.CompareTag("Wall"))
             {
-                GameManager.instance.Death();
+                if (almightyScissors)
+                {
+                    Destroy(hit.transform.gameObject);
+                    // Display SMASH (ou un truc dans le genre pour dire qu'on a détruit un mur)
+                }
+                else
+                {
+                    GameManager.instance.Death();
+                }
+                
             }
         }
+    }
+
+    public void SetAlmightyScissors()
+    {
+        almightyScissors = true;
     }
 }
