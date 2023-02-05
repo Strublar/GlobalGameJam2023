@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
 
     public void Retry()
     {
-        LoadMainScene();
         musicManager.Retry();
+        LoadMainScene();
         beatManager.Init();
     }
 
