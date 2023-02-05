@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        _score += scoreAmount;
+        _score += scoreAmount*(consecutiveHitsForVisual+1);
         hasHitLastBeat = true;
         IncrementConsecutiveHits();
         handlePowerUp(consecutiveHitsForBoost);

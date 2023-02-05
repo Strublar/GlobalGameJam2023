@@ -30,8 +30,8 @@ public class MusicManager : MonoBehaviour
         var deadSnapshot = audioMixer.FindSnapshot("Dead");
         audioMixer.TransitionToSnapshots(new []{ deadSnapshot}, new []{5f}, 1f);
         PlayDeath();
-  
     }
+    
     public void Retry()
     {
         var audioMixer = gameMusic.outputAudioMixerGroup.audioMixer;

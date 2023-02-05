@@ -72172,7 +72172,7 @@ MonoBehaviour:
   deathRecapScore: {fileID: 273973035}
   scoreCanvas: {fileID: 1432902966}
   boostThreshold: 2
-  boostScoreAmount: 3
+  boostScoreAmount: 2
 --- !u!4 &1938582496
 Transform:
   m_ObjectHideFlags: 0
