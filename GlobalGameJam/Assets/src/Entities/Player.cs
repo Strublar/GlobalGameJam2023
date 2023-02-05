@@ -164,24 +164,27 @@ public class Player : MonoBehaviour
             transform.position = Vector3.Lerp(from, targetPosition, currentPoint);
             yield return null;
         }
-        
-        foreach (var hit in bodyHits)
+
+        var wallsHit =Array.FindAll(bodyHits, hit => hit.transform.CompareTag("Wall"));
+        if (wallsHit.Length != 0 )
         {
-            if (hit.transform.CompareTag("Wall"))
+            if (almightyScissors)
             {
-                if (almightyScissors)
+                GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
+                foreach (var hit in wallsHit)
                 {
                     Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
-                    GameManager.instance.IncrementScoreWhileOnPowerUp();
-                    // Display SMASH (ou un truc dans le genre pour dire qu'on a détruit un mur)
                 }
-                else
-                {
-                    GameManager.instance.Death();
-                }
-                
+            
             }
+            else
+            {
+                GameManager.instance.Death();    
+            }
+            
+            yield return null;
         }
+        
     }
 
     public void SetAlmightyScissors()

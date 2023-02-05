@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int boostThreshold;
     [SerializeField] private int boostScoreAmount;
-    
+
 
     private int _score;
     private int consecutiveHitsForVisual;
     private int consecutiveHitsForBoost;
-    
+
     private bool hasHitLastBeat;
 
 
@@ -91,23 +91,24 @@ public class GameManager : MonoBehaviour
         {
             ResetConsecutiveHits();
         }
+
         hasHitLastBeat = false;
     }
 
     #endregion
-    
+
     public void IncrementScore(int scoreAmount)
     {
         if (scoreAmount == 0)
         {
             return;
         }
+
         _score += scoreAmount;
         hasHitLastBeat = true;
         IncrementConsecutiveHits();
         handlePowerUp(consecutiveHitsForBoost);
         HandleVisualsForScore(scoreAmount);
-        
     }
 
     private void IncrementConsecutiveHits()
@@ -122,10 +123,9 @@ public class GameManager : MonoBehaviour
         consecutiveHitsForBoost = 0;
     }
 
-    public void IncrementScoreWhileOnPowerUp()
+    public void IncrementScoreWhileOnPowerUp(int wallCountDestroyed)
     {
-        
-        IncrementScore(boostScoreAmount);
+        IncrementScore(boostScoreAmount * wallCountDestroyed);
         consecutiveHitsForBoost = 0;
         player.ResetAlmightyScissors();
     }
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         scoreTxt.color = GetColorForConsecutiveHits(consecutiveHitsForVisual);
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
-        scoreTxt.text = _score.ToString();
+        scoreTxt.text = "Score : " + _score;
     }
 
     private void handlePowerUp(int consecutiveHitsForBoost)
