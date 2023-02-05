@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         scoreTxt.text = _score.ToString();
+        GameOn();
     }
 
     #region UI utilities

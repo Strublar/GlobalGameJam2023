@@ -90,11 +90,13 @@ public class Player : MonoBehaviour
     private void OnOffBeat()
     {
         transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
-        scissorsAnimator.Play("DashIdle");
+        scissorsAnimator.Play("IdleDash");
     }
 
     private void Dash()
     {
+        transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
+        
         var position = transform.position;
         var direction = target.position - position;
 
@@ -116,7 +118,7 @@ public class Player : MonoBehaviour
 
     IEnumerator DashCoroutine(Vector3 from, Vector3 direction)
     {
-        scissorsAnimator.Play("WeaponSlash");
+        //scissorsAnimator.Play("WeaponSlash");
         
         var targetPosition = from + direction;
 
