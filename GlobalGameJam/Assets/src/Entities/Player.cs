@@ -35,7 +35,9 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] private Animator scissorsAnimator;
-    
+
+    [SerializeField] private GameObject DistortionFX;
+
     public void Awake()
     {
         BeatManager.Beat.AddListener(Dash);
@@ -134,6 +136,7 @@ public class Player : MonoBehaviour
                 if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
                 {
                     hittedRoot.CutRoot(hittedLocalPoint);
+                    Instantiate(DistortionFX, hit.point, UnityEngine.Quaternion.identity);
 
                 }
             }
@@ -147,7 +150,7 @@ public class Player : MonoBehaviour
                 if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
                 {
                     hittedRoot.CutRoot(hittedLocalPoint);
-
+                    Instantiate(DistortionFX, hit.point, UnityEngine.Quaternion.identity);
                 }
             }
         }

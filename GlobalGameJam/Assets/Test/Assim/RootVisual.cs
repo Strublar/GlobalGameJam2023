@@ -32,12 +32,15 @@ public class RootVisual : MonoBehaviour
     public GameObject FleurPrefab;
     private GameObject linkedFlower;
 
+    public float timeToFadeOut = 1;
+    private float fadeOutTimer = 0;
+
     private void Awake()
     {
         m_rootBaseMesh = m_rootBaseObject.GetComponentInChildren<SkinnedMeshRenderer>();
         m_MaskParams = m_rootBaseMesh.material.GetVector("_RootMask");
         m_rootBaseMesh.material.SetVector("_RootMask", new Vector4(m_MaskParams.x, 0, m_MaskParams.z, m_MaskParams.w));
-        timeToGrow += Random.Range(-.3f, .3f);
+        //timeToGrow += Random.Range(-.3f, .3f);
         isGrowing = true;
         Physics.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
     }
@@ -53,16 +56,6 @@ public class RootVisual : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SetRandomRotation();
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CutRoot(Random.Range(0.1f,0.9f));
-        }
-
         if (isGrowing) 
         {
             Grow();
@@ -72,6 +65,17 @@ public class RootVisual : MonoBehaviour
             if (isShrinking && !solid) 
             {
                 Shrink();
+            }
+            if (isShrinking) 
+            {
+                if(fadeOutTimer < timeToFadeOut) 
+                {
+                    fadeOutTimer += Time.deltaTime / timeToFadeOut;
+                }
+                else 
+                {
+                    m_rootCutMesh.material.SetFloat("_Cutout", 1);
+                }
             }
         }
     }
@@ -214,7 +218,6 @@ public class RootVisual : MonoBehaviour
         if (Longevity > 0) 
         {      
             RootsManager.instance.SpawnRootFromPosition(endPoint, Longevity, transform.eulerAngles.y);
-            //lower child longevity
         }
 
     }
