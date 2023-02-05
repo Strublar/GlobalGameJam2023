@@ -14,19 +14,29 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField] private float initialBeatPeriod;
     [SerializeField] private float offBeatOffset;
+    [SerializeField] private float initialOffset;
+    
     
     [SerializeField] private float beatMultiplierPerBeat;
 
     private float currentBeatPeriod;
     private float currentTimer = 0f;
     private float currentOffBeatTimer = 0f;
-
-    public void Start()
+    private bool isOn = false;
+    
+    public void Init()
     {
+        isOn = true;
         currentBeatPeriod = initialBeatPeriod;
         Beat.AddListener(UpdateBeat);
         OffBeat.AddListener(DisplayOffBeat);
-        currentTimer = offBeatOffset;
+        currentTimer = offBeatOffset+initialOffset;
+        currentOffBeatTimer = initialOffset;
+    }
+
+    public void Stop()
+    {
+        isOn = false;
     }
     
 
@@ -42,6 +52,9 @@ public class BeatManager : MonoBehaviour
     }
     public void Update()
     {
+        if (!isOn)
+            return;
+        
         currentTimer += Time.deltaTime;
         if (currentTimer >= currentBeatPeriod)
         {

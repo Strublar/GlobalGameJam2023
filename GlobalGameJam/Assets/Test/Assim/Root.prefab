@@ -579,7 +579,7 @@ MonoBehaviour:
   - {fileID: 5680776314938469978}
   - {fileID: 832048345880085818}
   m_rootBaseObject: {fileID: 6808646911282509769}
-  timeToGrow: 4
+  timeToGrow: 2.5000002
   m_rootProgression: 0
   wiggleAmount: 6
   solid: 0

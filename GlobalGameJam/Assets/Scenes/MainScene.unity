@@ -1127,7 +1127,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e5afd47493c0ef94f968e1ef527c7779, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1271,8 +1271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914bb5af16b6eb04bbe5182c262bd754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBeatPeriod: 0.8333335
-  offBeatOffset: 0.8333335
+  initialBeatPeriod: 0.8333334
+  offBeatOffset: 0.4166667
   beatMultiplierPerBeat: 1
 --- !u!1 &857703128
 GameObject:
@@ -2627,6 +2627,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 870207847}
   audioBeat: {fileID: 722852129}
   player: {fileID: 190101919}
+  beatManager: {fileID: 756101417}
   boostThreshold: 2
   boostScoreAmount: 3
 --- !u!4 &1938582496

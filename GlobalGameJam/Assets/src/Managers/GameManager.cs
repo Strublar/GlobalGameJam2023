@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTxt;
     [SerializeField] private AudioSource audioBeat;
     [SerializeField] private Player player;
+    [SerializeField] private BeatManager beatManager;
     
 
     [SerializeField] private int boostThreshold;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOn()
     {
+        beatManager.Init();
         Time.timeScale = 1;
         mainMenuCanvas.enabled = false;
         audioBeat.loop = true;

@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
     {
         transform.DOPunchScale(Vector3.one * playerPunchScalePower, playerPunchScaleDuration);
         
+        
         var position = transform.position;
         var direction = target.position - position;
 
