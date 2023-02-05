@@ -125,22 +125,28 @@ public class Player : MonoBehaviour
         var targetPosition = from + direction;
 
         RaycastHit[] bodyHits = Physics.RaycastAll(from, direction, direction.magnitude, dashPhysicsLayerMask.value);
-        RaycastHit[] cutHits = Physics.RaycastAll(targetPosition, direction, scissorsRange);
+        RaycastHit[] cutHits = Physics.RaycastAll(from, direction, direction.magnitude + scissorsRange);
         
-        foreach (var hit in bodyHits)
+        var wallsHit =Array.FindAll(bodyHits, hit => hit.transform.CompareTag("Wall"));
+        if (wallsHit.Length != 0 )
         {
-            if (hit.transform.CompareTag("Root")) 
+            if (almightyScissors)
             {
-                RootVisual hittedRoot = hit.transform.GetComponentInParent<RootVisual>();
-                float hittedLocalPoint = hittedRoot.transform.InverseTransformPoint(hit.point).y / 2;
-                if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
+                GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
+                foreach (var hit in wallsHit)
                 {
-                    hittedRoot.CutRoot(hittedLocalPoint);
-                    Instantiate(DistortionFX, targetPosition, UnityEngine.Quaternion.identity);
-
+                    Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
                 }
+            
             }
+            else
+            {
+                GameManager.instance.Death();    
+            }
+            
+            yield return null;
         }
+        
         foreach (var hit in cutHits)
         {
             if (hit.transform.CompareTag("Root")) 
@@ -165,25 +171,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        var wallsHit =Array.FindAll(bodyHits, hit => hit.transform.CompareTag("Wall"));
-        if (wallsHit.Length != 0 )
-        {
-            if (almightyScissors)
-            {
-                GameManager.instance.IncrementScoreWhileOnPowerUp(wallsHit.Length);
-                foreach (var hit in wallsHit)
-                {
-                    Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
-                }
-            
-            }
-            else
-            {
-                GameManager.instance.Death();    
-            }
-            
-            yield return null;
-        }
+        
         
     }
 

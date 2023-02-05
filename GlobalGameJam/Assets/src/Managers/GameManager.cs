@@ -66,6 +66,11 @@ public class GameManager : MonoBehaviour
         audioBeat.Play();
     }
 
+    public void GameOff()
+    {
+        beatManager.Stop();
+    }
+
     public void Retry()
     {
         LoadMainScene();
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviour
     public void Death()
     {
         //Time.timeScale = 0;
+        GameOff();
         deathCanvas.enabled = true;
         deathCanvas.GetComponent<Animator>().enabled = true;
         _score = 0;
