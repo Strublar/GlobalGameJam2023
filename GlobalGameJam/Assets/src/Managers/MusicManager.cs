@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
@@ -8,8 +9,15 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource deathMusic;
     [SerializeField] private List<AudioSource> cutSounds;
 
+    private void Awake()
+    {
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     public void StartGameMusic()
     {
+        
         gameMusic.loop = true;
         gameMusic.Play();
     }
@@ -17,9 +25,16 @@ public class MusicManager : MonoBehaviour
     public void Death()
     {
         var audioMixer = gameMusic.outputAudioMixerGroup.audioMixer;
-        audioMixer.TransitionToSnapshots(new []{audioMixer.FindSnapshot("Death")}, new []{5f}, 1f);
-        StopGameMusic();
-        // PlayDeath();
+        var deadSnapshot = audioMixer.FindSnapshot("Dead");
+        audioMixer.TransitionToSnapshots(new []{ deadSnapshot}, new []{5f}, 1f);
+        PlayDeath();
+  
+    }
+    public void Retry()
+    {
+        var audioMixer = gameMusic.outputAudioMixerGroup.audioMixer;
+        var gameSnapshot = audioMixer.FindSnapshot("Play");
+        gameSnapshot.TransitionTo(0);
     }
 
     public void StopGameMusic()

@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
     public void GameOn()
     {
         beatManager.Init();
-        Time.timeScale = 1;
         mainMenuCanvas.enabled = false;
         musicManager.StartGameMusic();
     }
@@ -75,6 +74,8 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         LoadMainScene();
+        musicManager.Retry();
+        beatManager.Init();
     }
 
     public void LoadMainScene()
@@ -85,12 +86,10 @@ public class GameManager : MonoBehaviour
     public void Death()
     {
         //Time.timeScale = 0;
-        GameOff();
-        musicManager.Death();
-        // musicManager.StopGameMusic();
-        // musicManager.PlayDeath();
         deathCanvas.enabled = true;
         deathCanvas.GetComponent<Animator>().enabled = true;
+        GameOff();
+        musicManager.Death();
         _score = 0;
     }
 

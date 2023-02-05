@@ -54515,6 +54515,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2405579341760427396, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579342124853018, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579342150348133, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579342251989673, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579342397175897, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579342560544409, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2405579342850982240, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
       propertyPath: m_Name
       value: 'AudioContainer '
@@ -54561,6 +54585,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2405579342850982241, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579343116323374, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579343131311829, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579343131311829, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579343256462905, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405579343609828275, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
