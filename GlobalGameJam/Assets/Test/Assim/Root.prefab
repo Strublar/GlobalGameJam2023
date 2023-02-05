@@ -585,3 +585,5 @@ MonoBehaviour:
   solid: 0
   Longevity: 2
   FleurPrefab: {fileID: 5473320706453448477, guid: 59a73cdffd91a894f92f523609b785cb, type: 3}
+  timeToFadeOut: 1
+  solidifiedTexture: {fileID: 2800000, guid: 1da6101e41bdb854a8bedb42507bd949, type: 3}

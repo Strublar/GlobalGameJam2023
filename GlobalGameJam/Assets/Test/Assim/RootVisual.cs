@@ -36,6 +36,8 @@ public class RootVisual : MonoBehaviour
     public float timeToFadeOut = 1;
     private float fadeOutTimer = 0;
 
+    public Texture solidifiedTexture;
+
     private void Awake()
     {
         m_rootBaseMesh = m_rootBaseObject.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -215,7 +217,8 @@ public class RootVisual : MonoBehaviour
         {
             bonesTransform[i].tag = "Wall";
         }
-        m_rootBaseMesh.material.SetColor("_Color", Color.black);
+        //m_rootBaseMesh.material.SetColor("_Color", Color.black);
+        m_rootBaseMesh.material.SetTexture("_BaseTex", solidifiedTexture);
         Longevity--;
         if (Longevity > 0) 
         {      

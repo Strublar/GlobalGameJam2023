@@ -53,6 +53,10 @@ Shader "FXs/RootCutoutMesh"
         [Space()]
         _RootMask ("Root Mask : X = Start; Y = End ; Z = PointyAmount ; W =", Vector) = (0, 1, 1, 0)
 
+        _BaseTex("Base Texture", 2D) = "white" {}
+        _TexTiling("XY = Tiling; ZW = Speed", Vector) = (1.0, 1.0, 1.0, 1.0)
+
+
 
     }
     SubShader
@@ -95,6 +99,7 @@ Shader "FXs/RootCutoutMesh"
                 #else
                     float2 uv : TEXCOORD0;
                 #endif
+                    float2 uv2 : TEXCOORD1;
             };
 
             struct v2f
@@ -110,6 +115,7 @@ Shader "FXs/RootCutoutMesh"
                 #else
                     float2 uv : TEXCOORD0;
                 #endif
+                    float2 uv2 : TEXCOORD3;
             };
 
             half4 _Color;
@@ -130,6 +136,7 @@ Shader "FXs/RootCutoutMesh"
             half _Cutout;
 
             sampler2D _NoiseTex;
+            sampler2D _BaseTex;
 
             #ifdef _NOISE_DEFORMATION
             sampler2D _NoiseDeformationTex;
@@ -139,6 +146,8 @@ Shader "FXs/RootCutoutMesh"
             #endif
 
             float4 _RootMask;
+            half4 _TexTiling;
+
 
             v2f vert (appdata v)
             {
@@ -178,6 +187,8 @@ Shader "FXs/RootCutoutMesh"
                     o.uv.xy = v.uv.xy;
                 #endif
 
+                    o.uv2.xy = v.uv2.xy;
+
                 o.color = v.color * _Color * 2.0;
 
                 return o;
@@ -206,6 +217,8 @@ Shader "FXs/RootCutoutMesh"
                 color *= i.color;
                 color.a *= noise;
 
+                color *= tex2D(_BaseTex, i.uv2.xy * _TexTiling.xy);
+
                 #ifdef _PARTICLE_MODE
                     _Cutout += i.uv.z;
                 #endif
@@ -223,6 +236,7 @@ Shader "FXs/RootCutoutMesh"
                 float progression = ((step(_RootMask.y,i.uv.y) + step(i.uv.y,_RootMask.x)));
                 clip(color.a- progression);
                 //return progression;
+                //return tex2D(_BaseTex, i.uv2.xy * _TexTiling.xy);
                 return color;
             }
             ENDCG
