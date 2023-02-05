@@ -21,7 +21,7 @@
 			Blend SrcAlpha OneMinusSrcAlpha
             Cull Off
 			ZWrite Off
-			ZTest LEqual
+			ZTest Always
 			Lighting Off
 
 			GrabPass

@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
                 if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
                 {
                     hittedRoot.CutRoot(hittedLocalPoint);
-                    Instantiate(DistortionFX, hit.point, UnityEngine.Quaternion.identity);
+                    Instantiate(DistortionFX, targetPosition, UnityEngine.Quaternion.identity);
 
                 }
             }
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
                 if (hittedRoot.m_rootProgression > hittedLocalPoint/1.5f) 
                 {
                     hittedRoot.CutRoot(hittedLocalPoint);
-                    Instantiate(DistortionFX, hit.point, UnityEngine.Quaternion.identity);
+                    Instantiate(DistortionFX, targetPosition, UnityEngine.Quaternion.identity);
                 }
             }
         }
