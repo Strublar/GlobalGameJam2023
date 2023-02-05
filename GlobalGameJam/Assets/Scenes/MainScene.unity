@@ -1554,7 +1554,7 @@ Transform:
   - {fileID: 1992019455}
   - {fileID: 505159833}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224666059
 GameObject:
@@ -11877,7 +11877,7 @@ Transform:
   m_GameObject: {fileID: 329169425}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.9, z: 1.5000005}
+  m_LocalScale: {x: 1, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 313709001}
@@ -31220,6 +31220,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 99f835293ace4b74790c98faf84fb2ae, type: 3}
   m_PrefabInstance: {fileID: 1263677945}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1283795433 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2405579343131311829, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
+  m_PrefabInstance: {fileID: 2405579342267471676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313501703
 GameObject:
   m_ObjectHideFlags: 0
@@ -36090,11 +36095,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!82 &1283795433 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2405579343131311829, guid: 8340458f1a55e9a4fad8b1cbc3aeeb81, type: 3}
-  m_PrefabInstance: {fileID: 2405579342267471676}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1315184513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48358,7 +48358,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 870207847}
   player: {fileID: 190101919}
   beatManager: {fileID: 756101417}
-  musicManager: {fileID: 0}
+  musicManager: {fileID: 742087026}
   boostThreshold: 2
   boostScoreAmount: 3
 --- !u!4 &1938582496

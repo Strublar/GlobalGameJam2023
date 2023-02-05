@@ -91,7 +91,14 @@ public class Player : MonoBehaviour
 
     private void OnOffBeat()
     {
-        scissorsAnimator.Play("IdleDash");
+        if (almightyScissors)
+        {
+            scissorsAnimator.Play("IdleDashFeu");
+        }else
+        {
+            scissorsAnimator.Play("IdleDash");
+        }
+        
     }
 
     private void Dash()
@@ -176,7 +183,7 @@ public class Player : MonoBehaviour
     public void SetAlmightyScissors()
     {
         almightyScissors = true;
-        scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        //scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public void ResetAlmightyScissors()
