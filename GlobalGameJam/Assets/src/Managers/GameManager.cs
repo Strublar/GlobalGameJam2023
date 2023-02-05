@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        musicManager.StartGameMusic();
         scoreTxt.text = "Score : "+ _score;
         GameOn();
     }
