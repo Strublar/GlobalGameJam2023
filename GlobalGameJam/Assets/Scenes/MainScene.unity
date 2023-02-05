@@ -72170,6 +72170,7 @@ MonoBehaviour:
   beatManager: {fileID: 756101417}
   musicManager: {fileID: 742087026}
   deathRecapScore: {fileID: 273973035}
+  scoreCanvas: {fileID: 1432902966}
   boostThreshold: 2
   boostScoreAmount: 3
 --- !u!4 &1938582496
