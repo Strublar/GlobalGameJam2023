@@ -17,10 +17,13 @@ public class GameManager : MonoBehaviour
     
 
     [SerializeField] private int boostThreshold;
+    [SerializeField] private int boostScoreAmount;
     
 
     private int _score;
-    private int consecutiveHits;
+    private int consecutiveHitsForVisual;
+    private int consecutiveHitsForBoost;
+    
     private bool hasHitLastBeat;
 
 
@@ -83,34 +86,58 @@ public class GameManager : MonoBehaviour
     {
         if (!hasHitLastBeat)
         {
-            consecutiveHits = 0;
+            ResetConsecutiveHits();
         }
         hasHitLastBeat = false;
     }
 
     #endregion
-
+    
     public void IncrementScore(int scoreAmount)
     {
-        _score += scoreAmount;
-        if (scoreAmount != 0)
+        if (scoreAmount == 0)
         {
-            hasHitLastBeat = true;
-            consecutiveHits += 1;
-            scoreTxt.color = GetColorForConsecutiveHits(consecutiveHits);
-            handlePowerUp(consecutiveHits);
+            return;
         }
+        _score += scoreAmount;
+        hasHitLastBeat = true;
+        IncrementConsecutiveHits();
+        handlePowerUp(consecutiveHitsForBoost);
+        HandleVisualsForScore(scoreAmount);
+        
+    }
 
+    private void IncrementConsecutiveHits()
+    {
+        consecutiveHitsForVisual += 1;
+        consecutiveHitsForBoost += 1;
+    }
+
+    private void ResetConsecutiveHits()
+    {
+        consecutiveHitsForVisual = 0;
+        consecutiveHitsForBoost = 0;
+    }
+
+    public void IncrementScoreWhileOnPowerUp()
+    {
+        
+        IncrementScore(boostScoreAmount);
+        consecutiveHitsForBoost = 0;
+        player.ResetAlmightyScissors();
+    }
+
+    private void HandleVisualsForScore(int scoreAmount)
+    {
+        scoreTxt.color = GetColorForConsecutiveHits(consecutiveHitsForVisual);
         ShakeCameraAccordingToScoreIncrease(scoreAmount);
         scoreTxt.text = _score.ToString();
     }
 
-    private void handlePowerUp(int consecutiveHits)
+    private void handlePowerUp(int consecutiveHitsForBoost)
     {
-        if (consecutiveHits >= boostThreshold)
+        if (consecutiveHitsForBoost >= boostThreshold)
         {
-            Debug.Log("ALMIGHT ACTIVATED");
-            // player.
             player.SetAlmightyScissors();
         }
     }
@@ -132,11 +159,6 @@ public class GameManager : MonoBehaviour
 
     private void ShakeCameraAccordingToScoreIncrease(int scoreAmount)
     {
-        if (scoreAmount == 0)
-        {
-            return;
-        }
-
         var shakeScore = shakeCoeff * scoreAmount;
         var shakeVector = new Vector3(shakeScore, shakeScore, shakeScore);
         if (shakeDuration > 0)

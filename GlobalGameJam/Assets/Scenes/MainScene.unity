@@ -865,10 +865,10 @@ RectTransform:
   m_Father: {fileID: 213177006}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 467.5, y: -388}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573516982
 MonoBehaviour:
@@ -1463,6 +1463,7 @@ MonoBehaviour:
   spawnRadiusMax: 35
   rootsSpawnOffset: {x: 0, y: 0.5, z: 0}
   rootsTargetPoint: {fileID: 603534201}
+  seedsPerOffBeat: 3
 --- !u!1 &870207845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,7 +2137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1475818973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,10 +2255,10 @@ RectTransform:
   m_Father: {fileID: 927552666}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 467.5, y: -263}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1523938434
 MonoBehaviour:
@@ -2371,7 +2372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1536578887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2565,7 +2566,8 @@ MonoBehaviour:
   scoreTxt: {fileID: 870207847}
   audioBeat: {fileID: 722852129}
   player: {fileID: 190101919}
-  boostThreshold: 0
+  boostThreshold: 2
+  boostScoreAmount: 3
 --- !u!4 &1938582496
 Transform:
   m_ObjectHideFlags: 0
@@ -2666,10 +2668,10 @@ RectTransform:
   m_Father: {fileID: 213177006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 467.5, y: -138}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072977827
 MonoBehaviour:

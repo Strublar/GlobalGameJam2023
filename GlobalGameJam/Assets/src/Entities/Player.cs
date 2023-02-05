@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerPunchScalePower;
     [SerializeField] private float playerPunchScaleDuration;
 
-    private bool almightyScissors = false;
+    private bool almightyScissors;
     
 
 
@@ -168,7 +168,8 @@ public class Player : MonoBehaviour
             {
                 if (almightyScissors)
                 {
-                    Destroy(hit.transform.gameObject);
+                    Destroy(hit.transform.gameObject.GetComponentInParent<RootVisual>().gameObject);
+                    GameManager.instance.IncrementScoreWhileOnPowerUp();
                     // Display SMASH (ou un truc dans le genre pour dire qu'on a détruit un mur)
                 }
                 else
@@ -183,5 +184,12 @@ public class Player : MonoBehaviour
     public void SetAlmightyScissors()
     {
         almightyScissors = true;
+        scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+    }
+
+    public void ResetAlmightyScissors()
+    {
+        almightyScissors = false;
+        scissorsAnimator.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
