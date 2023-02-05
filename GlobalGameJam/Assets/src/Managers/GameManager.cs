@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas mainMenuCanvas;
     [SerializeField] private Canvas deathCanvas;
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    // [SerializeField] private AudioSource audioBeat;
     [SerializeField] private Player player;
     [SerializeField] private BeatManager beatManager;
     [SerializeField] private MusicManager musicManager;
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        musicManager.StartGameMusic();
         scoreTxt.text = "Score : "+ _score;
         GameOn();
     }

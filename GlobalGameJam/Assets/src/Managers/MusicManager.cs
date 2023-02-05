@@ -21,7 +21,7 @@ public class MusicManager : MonoBehaviour
         var playSnapshot = gameMusic.outputAudioMixerGroup.audioMixer.FindSnapshot("Play");
         playSnapshot.TransitionTo(0);
         
-        // gameMusic.Play();
+        gameMusic.Play();
     }
 
     public void Death()
