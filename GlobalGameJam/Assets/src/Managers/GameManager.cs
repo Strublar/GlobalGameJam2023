@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOn()
     {
+        _score = 0;
         beatManager.Init();
         mainMenuCanvas.enabled = false;
         musicManager.StartGameMusic();
@@ -89,7 +90,6 @@ public class GameManager : MonoBehaviour
         deathCanvas.GetComponent<Animator>().enabled = true;
         GameOff();
         musicManager.Death();
-        _score = 0;
     }
 
     public void DoBeat()
